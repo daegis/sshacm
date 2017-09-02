@@ -1,6 +1,7 @@
 package com.aegis.acm.web.action;
 
 import com.aegis.acm.domain.Activity;
+import com.aegis.acm.domain.JoinCA;
 import com.aegis.acm.service.ActivityService;
 import com.aegis.acm.web.base.BaseAction;
 import com.opensymphony.xwork2.ActionContext;
@@ -61,5 +62,21 @@ public class ActivityAction extends BaseAction<Activity> {
         model = activityService.findByAid(model.getAid());
         ActionContext.getContext().getValueStack().set("activity", model);
         return "toDetail";
+    }
+
+    @Action("activityAction_findForDetail")
+    public void findForDetail() {
+        try {
+            model = activityService.findByAid(model.getAid());
+            List<JoinCA> caList = model.getCaList();
+            Map<String, Object> map = new LinkedHashMap<>();
+            map.put("code", 0);
+            map.put("msg", "");
+            map.put("count", caList.size());
+            map.put("data", caList);
+            doAjaxResponse(map, "caList", "activity", "customer");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -13,7 +13,6 @@
         var table = layui.table;
         table.render({
             elem: '#dataTable',
-//            height: 700,
             cols: [[
                 {field: 'aid', title: 'ID', width: 40, sort: true, fixed: true, align: 'center'}
                 , {field: 'activityName', title: '活动名称', width: 220, align: 'center'}

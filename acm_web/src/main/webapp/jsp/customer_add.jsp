@@ -33,7 +33,7 @@
             </div>
         </div>
         <div class="layui-inline">
-            <label class="layui-form-label">单选框</label>
+            <label class="layui-form-label">性别</label>
             <div class="layui-input-block">
                 <input type="radio" name="gender" value="男" title="男" checked="">
                 <input type="radio" name="gender" value="女" title="女">

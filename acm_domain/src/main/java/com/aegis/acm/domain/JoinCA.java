@@ -28,7 +28,7 @@ public class JoinCA {
     private Customer customer;
 
     public String getJoinTime() {
-        return new SimpleDateFormat("yyyy-MM-dd HH:mm").format(this.joinDate);
+        return new SimpleDateFormat("yyyy-MM-dd").format(this.joinDate);
     }
 
     public Integer getRestPay() {
@@ -37,6 +37,30 @@ public class JoinCA {
         } catch (Exception e) {
             return null;
         }
+    }
+
+    public String getPayMethod() {
+        return payMethod;
+    }
+
+    public String getCustomerName() {
+        return customer.getName();
+    }
+
+    public String getCustomerNickname() {
+        return customer.getNickname();
+    }
+
+    public void setPayMethod(String payMethod) {
+        this.payMethod = payMethod;
+    }
+
+    public String getJnote() {
+        return jnote;
+    }
+
+    public void setJnote(String jnote) {
+        this.jnote = jnote;
     }
 
     public Integer getJid() {
@@ -102,6 +126,9 @@ public class JoinCA {
                 ", joinDate=" + joinDate +
                 ", discount=" + discount +
                 ", prepay=" + prepay +
+                ", isLeader=" + isLeader +
+                ", payMethod='" + payMethod + '\'' +
+                ", jnote='" + jnote + '\'' +
                 ", activity=" + activity +
                 ", customer=" + customer +
                 '}';

@@ -43,68 +43,76 @@
     </table>
 </div>
 
-<div class="layui-collapse">
-    <div class="layui-colla-item">
-        <h2 class="layui-colla-title">
-            当前参加人员名单
-        </h2>
-        <div class="layui-colla-content layui-show">
-            <table class="layui-table" lay-even="" lay-skin="row">
-                <colgroup>
-                    <col width="120">
-                    <col width="120">
-                    <col width="150">
-                    <col width="100">
-                    <col width="100">
-                    <col width="150">
-                    <col width="100">
-                    <col>
-                </colgroup>
-                <thead>
-                <tr>
-                    <th>昵称</th>
-                    <th>姓名</th>
-                    <th>报名日期</th>
-                    <th>折扣</th>
-                    <th>预付款</th>
-                    <th>付款方式</th>
-                    <th>余款</th>
-                    <th>活动备注</th>
-                </tr>
-                </thead>
-                <tbody>
-                <s:iterator value="activity.caList">
-                    <tr>
-                        <td><s:property value="customer.nickname"/></td>
-                        <td><s:property value="customer.name"/></td>
-                        <td><s:property value="joinTime"/></td>
-                        <td><s:property value="discount"/></td>
-                        <td><s:property value="prepay"/></td>
-                        <td>支付宝</td>
-                        <td><s:property value="restPay"/></td>
-                        <td>备注信息~~~~~~~~</td>
-                    </tr>
-                </s:iterator>
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <div class="layui-colla-item">
-        <h2 class="layui-colla-title">李清照</h2>
-        <div class="layui-colla-content">内容区域</div>
-    </div>
-    <div class="layui-colla-item">
-        <h2 class="layui-colla-title">鲁迅</h2>
-        <div class="layui-colla-content">内容区域</div>
-    </div>
-</div>
+<fieldset class="layui-elem-field layui-field-title">
+    <legend>当前人员名单</legend>
+</fieldset>
 
+<table id="dataTable" lay-filter="dataTable"></table>
 
 <script>
-    layui.use('element', function () {
+    layui.use(['element', 'table'], function () {
         var element = layui.element;
         element.init();
+        var table = layui.table;
+        table.render({
+            elem: '#dataTable'
+            ,
+            height: 440
+            ,
+            cols: [[
+                {field: 'jid', title: 'ID', width: 40, sort: true, fixed: true, align: 'center'}
+                , {field: 'customerNickname', title: '昵称', width: 120, align: 'center'}
+                , {field: 'customerName', title: '姓名', width: 120, align: 'center'}
+                , {field: 'joinTime', title: '报名日期', sort: true, width: 150, align: 'center'}
+                , {field: 'discount', title: '折扣', width: 120, align: 'center'}
+                , {field: 'prepay', title: '预付', width: 120, align: 'center'}
+                , {field: 'payMethod', title: '方式', width: 120, align: 'center', templet: '#methodTpl'}
+                , {field: 'restPay', title: '余款', sort: true, width: 120, align: 'center'}
+                , {field: 'jnote', title: '备注信息', width: 120, align: 'center'}
+                , {fixed: 'right', title: '操作', width: 150, align: 'center', toolbar: '#barDemo'}
+            ]]
+            ,
+            url: '${pageContext.request.contextPath}/activityAction_findForDetail.action?aid=<s:property value="activity.aid"/>'
+        });
+
+        table.on('tool(dataTable)', function (obj) { //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
+            var data = obj.data; //获得当前行数据
+            var layEvent = obj.event; //获得 lay-event 对应的值
+            var tr = obj.tr; //获得当前行 tr 的DOM对象
+
+            if (layEvent === 'detail') { //查看
+                //do somehing
+//                layer.alert("jid=" + data.jid);
+                window.location = "${pageContext.request.contextPath}/joinAction_update.action?jid=" + data.jid;
+            } else if (layEvent === 'del') { //删除
+                layer.confirm('真的删除行么', function (index) {
+                    obj.del(); //删除对应行（tr）的DOM结构
+                    layer.close(index);
+                    //向服务端发送删除指令
+                });
+            } else if (layEvent === 'edit') { //编辑
+                //do something
+                layer.msg('只想弱弱提示');
+                //同步更新缓存对应的值
+//                obj.update({
+//                    username: '123'
+//                    , title: 'xxx'
+//                });
+            }
+        });
     });
+</script>
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-mini" lay-event="detail">查看</a>
+    <a class="layui-btn layui-btn-mini" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-mini" lay-event="del">删除</a>
+</script>
+<script type="text/html" id="methodTpl">
+    {{#  if(d.payMethod === '未付款'){ }}
+    <span style="color: red">{{ d.payMethod }}</span>
+    {{#  } else { }}
+    {{ d.payMethod }}
+    {{#  } }}
 </script>
 </body>
 </html>
