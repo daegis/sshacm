@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/acm_dao/acm_dao.iml" filepath="$PROJECT_DIR$/acm_dao/acm_dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/acm_domain/acm_domain.iml" filepath="$PROJECT_DIR$/acm_domain/acm_domain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/acm_main_parent.iml" filepath="$PROJECT_DIR$/acm_main_parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/acm_service/acm_service.iml" filepath="$PROJECT_DIR$/acm_service/acm_service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/acm_utils/acm_utils.iml" filepath="$PROJECT_DIR$/acm_utils/acm_utils.iml" />
+      <module fileurl="file://$PROJECT_DIR$/acm_web/acm_web.iml" filepath="$PROJECT_DIR$/acm_web/acm_web.iml" />
+    </modules>
+  </component>
+</project>
