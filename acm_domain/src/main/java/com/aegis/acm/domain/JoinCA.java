@@ -51,6 +51,10 @@ public class JoinCA {
         return customer.getNickname();
     }
 
+    public Integer getCustomerCid() {
+        return customer.getCid();
+    }
+
     public void setPayMethod(String payMethod) {
         this.payMethod = payMethod;
     }

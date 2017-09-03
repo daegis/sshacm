@@ -75,7 +75,7 @@
                 , {field: 'payMethod', title: '方式', width: 120, align: 'center', templet: '#methodTpl'}
                 , {field: 'restPay', title: '余款', sort: true, width: 120, align: 'center'}
                 , {field: 'jnote', title: '备注信息', width: 120, align: 'center'}
-                , {fixed: 'right', title: '操作', width: 150, align: 'center', toolbar: '#barDemo'}
+                , {fixed: 'right', title: '操作', width: 250, align: 'center', toolbar: '#barDemo'}
             ]]
             ,
             url: '${pageContext.request.contextPath}/activityAction_findForDetail.action?aid=<s:property value="activity.aid"/>'
@@ -97,21 +97,16 @@
                     //向服务端发送删除指令
                 });
             } else if (layEvent === 'edit') { //编辑
-                //do something
-                layer.msg('只想弱弱提示');
-                //同步更新缓存对应的值
-//                obj.update({
-//                    username: '123'
-//                    , title: 'xxx'
-//                });
+                layer.msg(data.customerCid);
+                window.location = "${pageContext.request.contextPath}/customerAction_update?cid=" + data.customerCid;
             }
         });
     });
 </script>
 <script type="text/html" id="barDemo">
-    <a class="layui-btn layui-btn-mini" lay-event="detail">查看</a>
-    <a class="layui-btn layui-btn-mini" lay-event="edit">编辑</a>
-    <a class="layui-btn layui-btn-danger layui-btn-mini" lay-event="del">删除</a>
+    <a class="layui-btn layui-btn-mini" lay-event="detail">活动信息</a>
+    <a class="layui-btn layui-btn-mini" lay-event="edit">个人信息</a>
+    <a class="layui-btn layui-btn-danger layui-btn-mini" lay-event="del">从活动中移除</a>
 </script>
 <script type="text/html" id="methodTpl">
     {{#  if(d.payMethod === '未付款'){ }}
