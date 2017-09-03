@@ -11,21 +11,51 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 
-import java.util.Date;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+import java.util.*;
 
 public class CustomerAction extends BaseAction<Customer> {
 
     @Autowired
     private CustomerService customerService;
 
+    private String keyword;
+
     @Action("customerAction_findByPage")
     public void findByPage() {
+        Specification<Customer> specification = new Specification<Customer>() {
+            @Override
+            public Predicate toPredicate(Root<Customer> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+                List<Predicate> predicateList = new LinkedList<>();
+                if (keyword != null && !keyword.equals("")) {
+                    String keywordLike = "%" + keyword + "%";
+                    Predicate nickname = cb.like(root.get("nickname").as(String.class), keywordLike);
+                    predicateList.add(nickname);
+                    if (keyword.matches("[0-9]+")) {
+                        Predicate mobile = cb.like(root.get("mobile").as(String.class), keywordLike);
+                        predicateList.add(mobile);
+                    }
+                    Predicate name = cb.like(root.get("name").as(String.class), keywordLike);
+                    predicateList.add(name);
+                    Predicate address = cb.like(root.get("address").as(String.class), keywordLike);
+                    predicateList.add(address);
+                }
+                if (predicateList.isEmpty()) {
+                    return null;
+                }
+                Predicate[] predicates = new Predicate[predicateList.size()];
+                predicates = predicateList.toArray(predicates);
+                Predicate predicate = cb.or(predicates);
+                return predicate;
+            }
+        };
         Pageable pageable = new PageRequest(page - 1, limit);
-        Page<Customer> customerPage = customerService.findByPage(pageable);
+        Page<Customer> customerPage = customerService.findByPage(specification, pageable);
         long totalElements = customerPage.getTotalElements();
         List<Customer> content = customerPage.getContent();
         Map<String, Object> map = new LinkedHashMap<>();
@@ -54,5 +84,9 @@ public class CustomerAction extends BaseAction<Customer> {
         model = customerService.findByCid(model.getCid());
         ActionContext.getContext().getValueStack().set("customer", model);
         return "toUpdate";
+    }
+
+    public void setKeyword(String keyword) {
+        this.keyword = keyword;
     }
 }

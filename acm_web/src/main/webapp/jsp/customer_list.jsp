@@ -58,7 +58,6 @@
                     keyword: $keyword
                 }
             });
-            alert("点击了搜索按钮");
         });
     })
 </script>
