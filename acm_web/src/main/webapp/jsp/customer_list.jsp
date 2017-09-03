@@ -12,6 +12,7 @@
         <input class="layui-input" name="keyword" id="reloadInput" autocomplete="off">
     </div>
     <button class="layui-btn" data-type="reload" id="reloadBtn">搜索</button>
+    <button class="layui-btn layui-btn-danger" id="cancelBtn">重置搜索</button>
 </div>
 <table id="dataTable" lay-filter="dataTable"></table>
 <script>
@@ -23,7 +24,7 @@
 //            height: 700,
             cols: [[
                 {field: 'cid', title: 'ID', width: 40, sort: true, fixed: true, align: 'center'}
-                , {field: 'nickname', title: '昵称', width: 80, align: 'center'}
+                , {field: 'nickname', title: '昵称', width: 120, align: 'center'}
                 , {field: 'mobile', title: '手机号', width: 120, align: 'center'}
                 , {field: 'gender', title: '性别', width: 60, align: 'center', templet: '#sexTpl'}
                 , {field: 'address', title: '地址', width: 120, align: 'center'}
@@ -39,7 +40,7 @@
         table.on('tool(dataTable)', function (obj) {
             var data = obj.data;
             if (obj.event === 'detail') {
-                layer.msg('ID：' + data.cid + ' 的待定操作');
+                window.location = "${pageContext.request.contextPath}/customerAction_associateActivity.action?cid=" + data.cid;
             } else if (obj.event === 'del') {
                 layer.confirm('真的删除行么, id=' + data.cid, function (index) {
                     obj.del();
@@ -58,6 +59,9 @@
                     keyword: $keyword
                 }
             });
+        });
+        $('#cancelBtn').on('click', function () {
+            window.location.reload();
         });
     })
 </script>

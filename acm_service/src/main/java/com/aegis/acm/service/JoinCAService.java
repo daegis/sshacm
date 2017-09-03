@@ -6,4 +6,6 @@ public interface JoinCAService {
     JoinCA findByJid(Integer jid);
 
     void save(JoinCA model);
+
+    void doAssociation(JoinCA model);
 }

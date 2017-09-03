@@ -33,4 +33,15 @@ public class JoinAction extends BaseAction<JoinCA> {
             doAjaxResponseResultMap(false, "操作失败,原因" + e.getMessage());
         }
     }
+
+    @Action("joinAction_doAssociation")
+    public void doAssociation() {
+        try {
+            joinCAService.doAssociation(model);
+            doAjaxResponseResultMap(true, "添加成功");
+        } catch (Exception e) {
+            e.printStackTrace();
+            doAjaxResponseResultMap(false, "操作失败,原因" + e.getMessage());
+        }
+    }
 }

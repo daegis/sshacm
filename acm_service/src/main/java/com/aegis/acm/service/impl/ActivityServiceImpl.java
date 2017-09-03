@@ -38,4 +38,9 @@ public class ActivityServiceImpl implements ActivityService {
     public Page<Activity> findByPage(Pageable pageable) {
         return activityDao.findAll(pageable);
     }
+
+    @Override
+    public List<Activity> findForCustomer(Integer cid) {
+        return activityDao.findForCustomer(cid);
+    }
 }

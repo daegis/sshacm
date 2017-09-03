@@ -14,4 +14,6 @@ public interface ActivityService {
     Activity findByAid(Integer i);
 
     Page<Activity> findByPage(Pageable pageable);
+
+    List<Activity> findForCustomer(Integer cid);
 }
