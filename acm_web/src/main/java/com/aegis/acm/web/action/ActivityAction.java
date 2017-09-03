@@ -79,4 +79,12 @@ public class ActivityAction extends BaseAction<Activity> {
             e.printStackTrace();
         }
     }
+
+    @Action(value = "activityAction_associate", results =
+    @Result(name = "toAssociation", type = "dispatcher", location = "/jsp/join_ca_add.jsp"))
+    public String forAssociation() {
+        model = activityService.findByAid(model.getAid());
+        ActionContext.getContext().getValueStack().set("activity", model);
+        return "toAssociation";
+    }
 }

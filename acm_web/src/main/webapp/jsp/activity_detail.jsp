@@ -17,7 +17,8 @@
             <col width="150">
             <col width="120">
             <col width="120">
-            <col width="200">
+            <col width="120">
+            <col width="120">
             <col>
         </colgroup>
         <thead>
@@ -28,6 +29,7 @@
             <th>当前人数</th>
             <th>价格</th>
             <th>使用车辆</th>
+            <th>操作</th>
         </tr>
         </thead>
         <tbody>
@@ -38,6 +40,10 @@
             <td><s:property value="activity.currentCustomerCount"/></td>
             <td><s:property value="activity.activityPrice"/></td>
             <td><s:property value="activity.activityBus"/></td>
+            <td>
+                <a href="${pageContext.request.contextPath}/activityAction_associate.action?aid=<s:property value="activity.aid"/>"
+                   class="layui-btn"><i class="layui-icon">&#xe608;</i>为活动添加人员</a>
+            </td>
         </tr>
         </tbody>
     </table>

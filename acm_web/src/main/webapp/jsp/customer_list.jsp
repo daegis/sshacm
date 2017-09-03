@@ -6,12 +6,19 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/layui/css/layui.css">
 </head>
 <body>
+<div class="demoTable" style="margin-top: 10px;margin-left: 10px">
+    搜索:
+    <div class="layui-inline">
+        <input class="layui-input" name="keyword" id="reloadInput" autocomplete="off">
+    </div>
+    <button class="layui-btn" data-type="reload" id="reloadBtn">搜索</button>
+</div>
 <table id="dataTable" lay-filter="dataTable"></table>
 <script>
     layui.use('table', function () {
         var $ = layui.jquery;
         var table = layui.table;
-        table.render({
+        var tableIns = table.render({
             elem: '#dataTable',
 //            height: 700,
             cols: [[
@@ -43,6 +50,15 @@
                 var url = "${pageContext.request.contextPath}/customerAction_update?cid=" + data.cid;
                 window.location = url;
             }
+        });
+        $('#reloadBtn').on('click', function () {
+            var $keyword = $('#reloadInput').val();
+            tableIns.reload({
+                where: {
+                    keyword: $keyword
+                }
+            });
+            alert("点击了搜索按钮");
         });
     })
 </script>
