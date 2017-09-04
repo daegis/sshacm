@@ -61,4 +61,30 @@
     <!-- 整合 spring data jpa -->
     <jpa:repositories base-package="com.aegis.acm.dao"/>
 
+
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <!-- 		shiro安全管理器，相当于人类的大脑，shiro框架的中央枢纽 -->
+        <property name="securityManager" ref="securityManager"/>
+        <!-- 		未认证的情况下，如果访问系统资源，会跳转到login.html -->
+        <property name="loginUrl" value="/login.jsp"/>
+        <!-- 		未授权的情况下，如果访问系统资源，会跳转到error.html -->
+        <property name="unauthorizedUrl" value="/error.html"/>
+        <!-- 过滤器链 -->
+        <!-- anon 未登录也可以访问的资源 -->
+        <!-- authc	需要登录才能访问的资源 -->
+        <property name="filterChainDefinitions">
+            <value>
+                /userAction_login.action = anon
+                /jsp/validatecode.jsp = anon
+                /** = authc
+                /* = authc
+            </value>
+        </property>
+    </bean>
+
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="realm" ref="userRealm"/>
+    </bean>
+
+    <bean id="userRealm" class="com.aegis.acm.web.action.UserRealm"/>
 </beans>
