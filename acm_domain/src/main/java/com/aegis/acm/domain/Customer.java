@@ -1,5 +1,7 @@
 package com.aegis.acm.domain;
 
+import com.aegis.acm.utils.IDNumberUtil;
+
 import javax.persistence.*;
 import java.util.*;
 
@@ -22,6 +24,10 @@ public class Customer {
 
     @OneToMany(mappedBy = "customer")
     private List<JoinCA> caList;
+
+    public String getAge() {
+        return IDNumberUtil.getAgeFromID(idNumber);
+    }
 
     public Integer getCid() {
         return cid;

@@ -39,6 +39,10 @@ public class JoinCA {
         }
     }
 
+    public String getCustomerAge() {
+        return customer.getAge();
+    }
+
     public String getPayMethod() {
         return payMethod;
     }

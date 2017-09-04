@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
+
 @Service
 @Transactional
 public class JoinCAServiceImpl implements JoinCAService {
@@ -49,6 +51,9 @@ public class JoinCAServiceImpl implements JoinCAService {
         model.setActivity(activity);
         customer.getCaList().add(model);
         activity.getCaList().add(model);
+        if (model.getJoinDate() == null) {
+            model.setJoinDate(new Date());
+        }
         joinCADao.save(model);
     }
 }

@@ -68,10 +68,11 @@
             cols: [[
                 {field: 'jid', title: 'ID', width: 40, sort: true, fixed: true, align: 'center'}
                 , {field: 'customerNickname', title: '昵称', width: 120, align: 'center'}
-                , {field: 'customerName', title: '姓名', width: 120, align: 'center'}
-                , {field: 'joinTime', title: '报名日期', sort: true, width: 150, align: 'center'}
-                , {field: 'discount', title: '折扣', width: 120, align: 'center'}
-                , {field: 'prepay', title: '预付', width: 120, align: 'center'}
+                , {field: 'customerName', title: '姓名', width: 90, align: 'center'}
+                , {field: 'joinTime', title: '报名日期', sort: true, width: 120, align: 'center'}
+                , {field: 'customerAge', title: '年龄', sort: true, width: 90, align: 'center', templet: '#ageTpl'}
+                , {field: 'discount', title: '折扣', width: 90, align: 'center'}
+                , {field: 'prepay', title: '预付', width: 90, align: 'center'}
                 , {field: 'payMethod', title: '方式', width: 120, align: 'center', templet: '#methodTpl'}
                 , {field: 'restPay', title: '余款', sort: true, width: 120, align: 'center'}
                 , {field: 'jnote', title: '备注信息', width: 120, align: 'center'}
@@ -87,8 +88,6 @@
             var tr = obj.tr; //获得当前行 tr 的DOM对象
 
             if (layEvent === 'detail') { //查看
-                //do somehing
-//                layer.alert("jid=" + data.jid);
                 window.location = "${pageContext.request.contextPath}/joinAction_update.action?jid=" + data.jid;
             } else if (layEvent === 'del') { //删除
                 layer.confirm('真的删除行么', function (index) {
@@ -113,6 +112,19 @@
     <span style="color: red">{{ d.payMethod }}</span>
     {{#  } else { }}
     {{ d.payMethod }}
+    {{#  } }}
+</script>
+<script type="text/html" id="ageTpl">
+    {{#  if(d.customerAge === '非法ID'){ }}
+    <span style="color: red">{{ d.customerAge }}</span>
+    {{#  } else if(d.customerAge >= 70){ }}
+    <span style="color: green">{{ d.customerAge }}</span>
+    {{#  } else if(d.customerAge >= 65){ }}
+    <span style="color: crimson">{{ d.customerAge }}</span>
+    {{#  } else if(d.customerAge >= 60){ }}
+    <span style="color: blue">{{ d.customerAge }}</span>
+    {{#  } else { }}
+    {{ d.customerAge }}
     {{#  } }}
 </script>
 </body>

@@ -39,7 +39,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label">选择活动</label>
         <div class="layui-input-block">
-            <select name="activity.aid" lay-verify="">
+            <select name="activity.aid" lay-verify="required">
                 <option value="">请选择一个活动</option>
                 <%--<option value="010">北京</option>--%>
                 <s:iterator value="activities">
