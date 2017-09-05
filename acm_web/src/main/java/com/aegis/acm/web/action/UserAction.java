@@ -20,7 +20,7 @@ public class UserAction extends BaseAction<User> {
 
     @Action("userAction_login")
     public void login() {
-        String sessionCaptcha = (String) ServletActionContext.getRequest().getSession().getAttribute("validateCode");
+        String sessionCaptcha = (String) ServletActionContext.getRequest().getSession().getAttribute("captcha");
         System.out.println(sessionCaptcha);
         System.out.println(captcha);
         if (sessionCaptcha == null || !sessionCaptcha.equals(captcha)) {

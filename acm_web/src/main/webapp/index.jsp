@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,7 +30,7 @@
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item">
                 <a href="javascript:;">
-                    当前登录用户: xxx
+                    当前登录用户: <shiro:user><shiro:principal property="nickname"/></shiro:user>
                 </a>
             </li>
             <li class="layui-nav-item"><a href="${pageContext.request.contextPath}/userAction_logout.action">退出登录</a>
