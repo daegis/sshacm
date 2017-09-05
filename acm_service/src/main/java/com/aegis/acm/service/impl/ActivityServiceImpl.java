@@ -10,8 +10,10 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
+@SuppressWarnings("SpringAutowiredFieldsWarningInspection")
 @Service
 @Transactional
 public class ActivityServiceImpl implements ActivityService {
@@ -21,6 +23,9 @@ public class ActivityServiceImpl implements ActivityService {
 
     @Override
     public void save(Activity activity) {
+        if (activity.getActivityDate() == null) {
+            activity.setActivityDate(new Date());
+        }
         activityDao.save(activity);
     }
 
