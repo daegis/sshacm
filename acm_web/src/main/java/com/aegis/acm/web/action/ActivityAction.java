@@ -87,4 +87,12 @@ public class ActivityAction extends BaseAction<Activity> {
         ActionContext.getContext().getValueStack().set("activity", model);
         return "toAssociation";
     }
+
+    @Action(value = "activityAction_report", results =
+    @Result(name = "toReport", type = "dispatcher", location = "/jsp/reporter.jsp"))
+    public String forReport() {
+        List<Activity> activityList = activityService.findAll();
+        ActionContext.getContext().getValueStack().set("activity", activityList);
+        return "toReport";
+    }
 }

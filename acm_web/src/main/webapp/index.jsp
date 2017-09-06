@@ -70,7 +70,9 @@
                 <li class="layui-nav-item">
                     <a href="javascript:;">报表管理</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="javascript:;">生成活动报表</a></dd>
+                        <dd><a href="${pageContext.request.contextPath}/activityAction_report.action"
+                               target="mainFrame">生成活动报表</a>
+                        </dd>
                         <dd><a href="javascript:;">待添加功能</a></dd>
                     </dl>
                 </li>
