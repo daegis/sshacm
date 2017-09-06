@@ -15,17 +15,26 @@
         <div class="layui-logo">人员活动管理系统</div>
         <!-- 头部区域（可配合layui已有的水平导航） -->
         <ul class="layui-nav layui-layout-left">
-            <li class="layui-nav-item"><a href="http://www.baidu.com" target="mainFrame">控制台</a></li>
-            <li class="layui-nav-item"><a href="http://tieba.baidu.com" target="mainFrame">商品管理</a></li>
-            <li class="layui-nav-item"><a href="">用户</a></li>
+            <li class="layui-nav-item layui-this"><a href="javascript:;">最新活动</a></li>
             <li class="layui-nav-item">
-                <a href="javascript:;">其它系统</a>
+                <a href="javascript:;">产品</a>
                 <dl class="layui-nav-child">
-                    <dd><a href="">邮件管理</a></dd>
-                    <dd><a href="">消息管理</a></dd>
-                    <dd><a href="">授权管理</a></dd>
+                    <dd><a href="javascript:;">选项1</a></dd>
+                    <dd><a href="javascript:;">选项2</a></dd>
+                    <dd><a href="javascript:;">选项3</a></dd>
                 </dl>
             </li>
+            <li class="layui-nav-item"><a href="javascript:;">大数据</a></li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">解决方案</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="javascript:;">移动模块</a></dd>
+                    <dd><a href="javascript:;">后台模版</a></dd>
+                    <dd class="layui-this"><a href="javascript:;">选中项</a></dd>
+                    <dd><a href="javascript:;">电商平台</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item"><a href="javascript:;">社区</a></li>
         </ul>
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item">
@@ -40,7 +49,7 @@
     <div class="layui-side layui-bg-black">
         <div class="layui-side-scroll">
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
-            <ul class="layui-nav layui-nav-tree" lay-filter="test">
+            <ul class="layui-nav layui-nav-tree layui-inline" lay-filter="demo">
                 <li class="layui-nav-item layui-nav-itemed">
                     <a class="" href="javascript:;">人员活动管理</a>
                     <dl class="layui-nav-child">
@@ -59,15 +68,21 @@
                     </dl>
                 </li>
                 <li class="layui-nav-item">
-                    <a href="javascript:;">解决方案</a>
+                    <a href="javascript:;">报表管理</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="javascript:;">列表一</a></dd>
-                        <dd><a href="javascript:;">列表二</a></dd>
-                        <dd><a href="">超链接</a></dd>
+                        <dd><a href="javascript:;">生成活动报表</a></dd>
+                        <dd><a href="javascript:;">待添加功能</a></dd>
                     </dl>
                 </li>
-                <li class="layui-nav-item"><a href="">云市场</a></li>
-                <li class="layui-nav-item"><a href="">发布商品</a></li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">系统管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;">修改密码</a></dd>
+                        <dd><a href="javascript:;">权限设置(待完善)</a></dd>
+                    </dl>
+                </li>
+                <%--<li class="layui-nav-item"><a href="">云市场</a></li>--%>
+                <%--<li class="layui-nav-item"><a href="">发布商品</a></li>--%>
             </ul>
         </div>
     </div>
@@ -86,7 +101,10 @@
     //JavaScript代码区域
     layui.use('element', function () {
         var element = layui.element;
+        element.init();
+        element.on('nav(demo)', function (elem) {
 
+        });
     });
 </script>
 </body>

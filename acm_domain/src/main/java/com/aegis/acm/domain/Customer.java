@@ -16,11 +16,18 @@ public class Customer {
     private String mobile;
     private String address;
     private String name;
+
+    @Column(name = "id_number")
     private String idNumber;
+
+    @Column(name = "first_add")
     private Date firstAdd;
     private String gender;
     private String cnote;
     private String special;
+
+    @Column(name = "in_use")
+    private String inUse;
 
     @OneToMany(mappedBy = "customer")
     private List<JoinCA> caList;
@@ -47,6 +54,14 @@ public class Customer {
 
     public String getNickname() {
         return nickname;
+    }
+
+    public String getInUse() {
+        return inUse;
+    }
+
+    public void setInUse(String inUse) {
+        this.inUse = inUse;
     }
 
     public void setNickname(String nickname) {

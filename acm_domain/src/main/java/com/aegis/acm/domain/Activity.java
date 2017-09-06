@@ -12,11 +12,26 @@ public class Activity {
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer aid;
+    @Column(name = "activity_name")
     private String activityName;
+
+    @Column(name = "activity_date")
     private Date activityDate;
+
+    @Column(name = "end_date")
+    private Date endDate;
+
+    @Column(name = "activity_price")
     private Integer activityPrice;
+
+    @Column(name = "activity_bus")
     private String activityBus;
+
+    @Column(name = "day_count")
     private String dayCount;
+
+    @Column(name = "in_use")
+    private String inUse;
 
     @OneToMany(mappedBy = "activity", fetch = FetchType.EAGER)
     private List<JoinCA> caList;
@@ -49,6 +64,14 @@ public class Activity {
         return dayCount;
     }
 
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
     public void setDayCount(String dayCount) {
         this.dayCount = dayCount;
     }
@@ -71,6 +94,14 @@ public class Activity {
 
     public String getActivityBus() {
         return activityBus;
+    }
+
+    public String getInUse() {
+        return inUse;
+    }
+
+    public void setInUse(String inUse) {
+        this.inUse = inUse;
     }
 
     public void setActivityBus(String activityBus) {

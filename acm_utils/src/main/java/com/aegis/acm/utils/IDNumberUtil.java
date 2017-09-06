@@ -58,6 +58,32 @@ public class IDNumberUtil {
         return String.valueOf(age + 1);
     }
 
+    public static String getDOB(String no) {
+        if (!checkID(no)) {
+            return "非法身份证号码";
+        }
+        String dob = no.substring(6, 14);
+        String yearString = dob.substring(0, 4);
+        String monthString = dob.substring(4, 6);
+        String dayString = dob.substring(6, 8);
+        int year = Integer.parseInt(yearString);
+        int month = Integer.parseInt(monthString);
+        int day = Integer.parseInt(dayString);
+        return String.valueOf(year) + "/" + String.valueOf(month) + "/" + String.valueOf(day);
+    }
+
+    public static String getGender(String no) {
+        if (!checkID(no)) {
+            return "非法身份证号码";
+        }
+        char c = no.charAt(16);
+        int gender = c - '0';
+        if (gender % 2 == 0) {
+            return "女";
+        }
+        return "男";
+    }
+
     public static void main(String[] args) {
         System.out.println(getAgeFromID("fff"));
     }

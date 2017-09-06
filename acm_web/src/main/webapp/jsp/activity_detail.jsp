@@ -56,14 +56,15 @@
 <table id="dataTable" lay-filter="dataTable"></table>
 
 <script>
-    layui.use(['element', 'table'], function () {
+    layui.use(['element', 'table', 'jquery'], function () {
         var element = layui.element;
+        var $ = layui.jquery;
         element.init();
         var table = layui.table;
         table.render({
             elem: '#dataTable'
             ,
-            height: 440
+            height: 420
             ,
             cols: [[
                 {field: 'jid', title: 'ID', width: 40, sort: true, fixed: true, align: 'center'}
@@ -90,13 +91,23 @@
             if (layEvent === 'detail') { //查看
                 window.location = "${pageContext.request.contextPath}/joinAction_update.action?jid=" + data.jid;
             } else if (layEvent === 'del') { //删除
-                layer.confirm('真的删除行么', function (index) {
-                    obj.del(); //删除对应行（tr）的DOM结构
+                layer.confirm('真的要从当前活动中移除人员【' + data.customerNickname + '(' + data.customerName + ')】吗?请注意, 从活动中移除一位成员并不会从人员列表中移除这个人, 稍后可以在其他活动中重新添加这个人员.', function (index) {
                     layer.close(index);
                     //向服务端发送删除指令
+                    $.ajax({
+                        url: '${pageContext.request.contextPath}/joinAction_deleteFromActivity.action',
+                        type: 'post',
+                        data: {'jid': data.jid},
+                        dataType: 'json',
+                        success: function (data) {
+                            if (data.success) {
+                                obj.del(); //删除对应行（tr）的DOM结构
+                            }
+                            layer.msg(data.message);
+                        }
+                    })
                 });
             } else if (layEvent === 'edit') { //编辑
-                layer.msg(data.customerCid);
                 window.location = "${pageContext.request.contextPath}/customerAction_update?cid=" + data.customerCid;
             }
         });

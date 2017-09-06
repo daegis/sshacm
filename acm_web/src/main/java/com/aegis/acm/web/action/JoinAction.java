@@ -44,4 +44,15 @@ public class JoinAction extends BaseAction<JoinCA> {
             doAjaxResponseResultMap(false, "操作失败,原因" + e.getMessage());
         }
     }
+
+    @Action("joinAction_deleteFromActivity")
+    public void deleteFromActivity() {
+        try {
+            joinCAService.joinAction_deleteFromActivity(model);
+            doAjaxResponseResultMap(true, "移除成功");
+        } catch (Exception e) {
+            e.printStackTrace();
+            doAjaxResponseResultMap(true, "移除失败, 原因: " + e.getMessage());
+        }
+    }
 }

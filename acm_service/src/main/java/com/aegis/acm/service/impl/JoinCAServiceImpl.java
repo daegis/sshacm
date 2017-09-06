@@ -56,4 +56,9 @@ public class JoinCAServiceImpl implements JoinCAService {
         }
         joinCADao.save(model);
     }
+
+    @Override
+    public void joinAction_deleteFromActivity(JoinCA model) {
+        joinCADao.delete(model);
+    }
 }

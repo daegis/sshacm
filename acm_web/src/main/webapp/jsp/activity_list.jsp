@@ -32,10 +32,7 @@
                 var url = "${pageContext.request.contextPath}/activityAction_detail?aid=" + data.aid;
                 window.location = url;
             } else if (obj.event === 'del') {
-                layer.confirm('真的删除行么, id=' + data.cid, function (index) {
-                    obj.del();
-                    layer.close(index);
-                });
+                layer.alert("为保证数据安全, 页面不提供删除功能. 如需删除具体人员或活动, 请将人员或者活动的id告知管理员");
             } else if (obj.event === 'edit') {
                 var url = "${pageContext.request.contextPath}/activityAction_update?aid=" + data.aid;
                 window.location = url;

@@ -8,4 +8,6 @@ public interface JoinCAService {
     void save(JoinCA model);
 
     void doAssociation(JoinCA model);
+
+    void joinAction_deleteFromActivity(JoinCA model);
 }
