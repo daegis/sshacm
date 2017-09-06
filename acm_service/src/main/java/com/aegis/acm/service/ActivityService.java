@@ -20,4 +20,6 @@ public interface ActivityService {
     List<Activity> findForCustomer(Integer cid);
 
     void reportInsurance(Integer aid, FileInputStream in, ServletOutputStream outputStream);
+
+    void reportNormalExcel(Integer aid, FileInputStream in, ServletOutputStream outputStream);
 }

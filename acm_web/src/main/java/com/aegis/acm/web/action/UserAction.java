@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class UserAction extends BaseAction<User> {
 
     private String captcha;
+    private String newPassword1;
+    private String newPassword2;
 
     @Autowired
     private UserService userService;
@@ -21,8 +23,6 @@ public class UserAction extends BaseAction<User> {
     @Action("userAction_login")
     public void login() {
         String sessionCaptcha = (String) ServletActionContext.getRequest().getSession().getAttribute("captcha");
-        System.out.println(sessionCaptcha);
-        System.out.println(captcha);
         if (sessionCaptcha == null || !sessionCaptcha.equals(captcha)) {
             doAjaxResponseResultMap(false, "验证码不正确, 请注意所有的圈都是数字0");
             return;
@@ -43,6 +43,38 @@ public class UserAction extends BaseAction<User> {
     public String logout() {
         SecurityUtils.getSubject().logout();
         return "logout";
+    }
+
+    @Action("userAction_changePassword")
+    public void changePassword() {
+        try {
+            if (newPassword1 != null && newPassword2 != null && newPassword1.equals(newPassword2)) {
+                User user = (User) SecurityUtils.getSubject().getPrincipal();
+                User dbuser = userService.findByUsernameAndPassword(user.getUsername(), model.getPassword());
+                if (dbuser == null) {
+                    doAjaxResponseResultMap(false, "旧密码不正确,无法修改密码");
+                    return;
+                }
+                dbuser.setPassword(newPassword2);
+                userService.save(dbuser);
+                SecurityUtils.getSubject().logout();
+                doAjaxResponseResultMap(true, "修改成功, 请重新登录");
+            } else {
+                doAjaxResponseResultMap(false, "两次输入的新密码不一致, 请重新输入");
+                return;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            doAjaxResponseResultMap(false, "修改失败, 请重试");
+        }
+    }
+
+    public void setNewPassword1(String newPassword1) {
+        this.newPassword1 = newPassword1;
+    }
+
+    public void setNewPassword2(String newPassword2) {
+        this.newPassword2 = newPassword2;
     }
 
     public void setCaptcha(String captcha) {

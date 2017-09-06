@@ -79,7 +79,9 @@
                 <li class="layui-nav-item">
                     <a href="javascript:;">系统管理</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="javascript:;">修改密码</a></dd>
+                        <dd>
+                            <a href="${pageContext.request.contextPath}/jsp/user/user_detail.jsp" target="mainFrame">修改密码</a>
+                        </dd>
                         <dd><a href="javascript:;">权限设置(待完善)</a></dd>
                     </dl>
                 </li>

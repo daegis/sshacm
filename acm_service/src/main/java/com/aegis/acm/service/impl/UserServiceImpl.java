@@ -21,4 +21,9 @@ public class UserServiceImpl implements UserService {
         User user = userDao.findByUsernameAndPassword(username, password);
         return user;
     }
+
+    @Override
+    public void save(User dbuser) {
+        userDao.save(dbuser);
+    }
 }

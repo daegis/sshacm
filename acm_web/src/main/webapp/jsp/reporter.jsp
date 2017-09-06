@@ -13,7 +13,7 @@
 <div class="layui-form">
     <table class="layui-table">
         <colgroup>
-            <col width="222">
+            <col width="300">
             <col width="120">
             <col width="150">
             <col>
@@ -31,8 +31,10 @@
                 <td colspan="3">
                     <a href="${pageContext.request.contextPath}/reportAction_reportInsurance.action?aid=<s:property value="aid"/>"
                        class="layui-btn layui-btn-small layui-btn-normal insurance">保险单</a>
-                    <a href="http://www.layui.com" class="layui-btn layui-btn-small">免责声明</a>
-                    <a href="http://www.layui.com" class="layui-btn layui-btn-small layui-btn-danger">常规登记表</a>
+                    <a href="${pageContext.request.contextPath}/reportAction_reportAnnouncement.action?aid=<s:property value="aid"/>"
+                       class="layui-btn layui-btn-small" target="_blank">免责声明</a>
+                    <a href="${pageContext.request.contextPath}/reportAction_reportNormalExcel.action?aid=<s:property value="aid"/>"
+                       class="layui-btn layui-btn-small layui-btn-danger">常规登记表</a>
                 </td>
             </tr>
         </s:iterator>

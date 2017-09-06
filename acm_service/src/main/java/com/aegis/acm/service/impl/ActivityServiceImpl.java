@@ -25,7 +25,7 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
-@SuppressWarnings("SpringAutowiredFieldsWarningInspection")
+@SuppressWarnings({"SpringAutowiredFieldsWarningInspection", "Duplicates"})
 @Service
 @Transactional
 public class ActivityServiceImpl implements ActivityService {
@@ -84,6 +84,33 @@ public class ActivityServiceImpl implements ActivityService {
 //                row.getCell(5).setCellValue(IDNumberUtil.getDOB(customer.getIdNumber()));
 //                row.getCell(6).setCellValue(IDNumberUtil.getGender(customer.getIdNumber()));
                 row.getCell(7).setCellValue(customer.getMobile());
+                rowIndex++;
+            }
+            book.write(outputStream);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void reportNormalExcel(Integer aid, FileInputStream in, ServletOutputStream outputStream) {
+        Activity activity = activityDao.findOne(aid);
+        List<JoinCA> caList = activity.getCaList();
+        try {
+            HSSFWorkbook book = new HSSFWorkbook(in);
+            HSSFSheet sheet = book.getSheetAt(0);
+            sheet.setForceFormulaRecalculation(true);
+            int rowIndex = 1;
+            HSSFRow row = null;
+            HSSFCell cell = null;
+            for (JoinCA joinCA : caList) {
+                Customer customer = joinCA.getCustomer();
+                row = sheet.createRow(rowIndex);
+                row.createCell(0).setCellValue(rowIndex);
+                row.createCell(1).setCellValue(customer.getName());
+                row.createCell(2).setCellValue(customer.getMobile());
+                row.createCell(3).setCellValue(IDNumberUtil.getGender(customer.getIdNumber()));
+                row.createCell(4).setCellValue(customer.getIdNumber());
                 rowIndex++;
             }
             book.write(outputStream);
