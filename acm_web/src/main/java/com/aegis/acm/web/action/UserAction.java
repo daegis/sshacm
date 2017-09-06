@@ -24,7 +24,7 @@ public class UserAction extends BaseAction<User> {
         System.out.println(sessionCaptcha);
         System.out.println(captcha);
         if (sessionCaptcha == null || !sessionCaptcha.equals(captcha)) {
-            doAjaxResponseResultMap(false, "验证码不正确, 请注意验证码的圈都是数字 '0'");
+            doAjaxResponseResultMap(false, "验证码不正确, 请注意所有的圈都是数字0");
             return;
         }
         UsernamePasswordToken token = new UsernamePasswordToken(model.getUsername(), model.getPassword());

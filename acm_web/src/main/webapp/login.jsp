@@ -50,6 +50,11 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    if (top.location != self.location) {
+        top.location = self.location;
+    }
+</script>
 <script>
     layui.use(['jquery', 'form'], function () {
         var $ = layui.jquery;
