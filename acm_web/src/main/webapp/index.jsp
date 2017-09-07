@@ -15,9 +15,9 @@
         <div class="layui-logo">人员活动管理系统</div>
         <!-- 头部区域（可配合layui已有的水平导航） -->
         <ul class="layui-nav layui-layout-left">
-            <li class="layui-nav-item layui-this"><a href="javascript:;">最新活动</a></li>
+            <li class="layui-nav-item layui-this"><a href="${pageContext.request.contextPath}/">管理系统</a></li>
             <li class="layui-nav-item">
-                <a href="javascript:;">产品</a>
+                <a href="javascript:;">目的地管理</a>
                 <dl class="layui-nav-child">
                     <dd><a href="javascript:;">选项1</a></dd>
                     <dd><a href="javascript:;">选项2</a></dd>
@@ -34,7 +34,7 @@
                     <dd><a href="javascript:;">电商平台</a></dd>
                 </dl>
             </li>
-            <li class="layui-nav-item"><a href="javascript:;">社区</a></li>
+            <li class="layui-nav-item"><a href="javascript:;">探险活动</a></li>
         </ul>
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item">
@@ -93,7 +93,7 @@
 
     <div class="layui-body" style="overflow: hidden">
         <!-- 内容主体区域 -->
-        <iframe src="" frameborder="0" name="mainFrame" width="100%" height="100%"></iframe>
+        <iframe src="${pageContext.request.contextPath}/html/index.html" frameborder="0" name="mainFrame" width="100%" height="100%"></iframe>
     </div>
 
     <div class="layui-footer">
