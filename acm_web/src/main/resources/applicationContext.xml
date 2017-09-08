@@ -38,8 +38,8 @@
                 <!-- 自动建表 -->
                 <property name="generateDdl" value="true"/>
                 <property name="database" value="MYSQL"/>
-                <property name="databasePlatform" value="org.hibernate.dialect.MySQLDialect"/>
-                <property name="showSql" value="false"/>
+                <property name="databasePlatform" value="org.hibernate.dialect.MySQL57InnoDBDialect"/>
+                <property name="showSql" value="true"/>
             </bean>
         </property>
         <property name="jpaDialect">
