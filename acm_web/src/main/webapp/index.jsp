@@ -54,16 +54,16 @@
                     <a class="" href="javascript:;">人员活动管理</a>
                     <dl class="layui-nav-child">
                         <dd>
-                            <a href="${pageContext.request.contextPath}/jsp/customer_add.jsp"
+                            <a href="${pageContext.request.contextPath}/jsp/customer/customer_add.jsp"
                                target="mainFrame">人员添加</a>
                         </dd>
                         <dd>
-                            <a href="${pageContext.request.contextPath}/jsp/customer_list.jsp"
+                            <a href="${pageContext.request.contextPath}/jsp/customer/customer_list.jsp"
                                target="mainFrame">人员列表</a>
                         </dd>
-                        <dd><a href="${pageContext.request.contextPath}/jsp/activity_add.jsp"
+                        <dd><a href="${pageContext.request.contextPath}/jsp/activity/activity_add.jsp"
                                target="mainFrame">活动添加</a></dd>
-                        <dd><a href="${pageContext.request.contextPath}/jsp/activity_list.jsp"
+                        <dd><a href="${pageContext.request.contextPath}/jsp/activity/activity_list.jsp"
                                target="mainFrame">活动列表</a></dd>
                     </dl>
                 </li>

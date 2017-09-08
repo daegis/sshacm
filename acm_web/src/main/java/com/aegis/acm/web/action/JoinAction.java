@@ -16,7 +16,7 @@ public class JoinAction extends BaseAction<JoinCA> {
     private JoinCAService joinCAService;
 
     @Action(value = "joinAction_update", results =
-    @Result(name = "toUpdate", type = "dispatcher", location = "/jsp/join_ca_edit.jsp"))
+    @Result(name = "toUpdate", type = "dispatcher", location = "/jsp/join/join_ca_edit.jsp"))
     public String update() {
         JoinCA joinCA = joinCAService.findByJid(model.getJid());
         ActionContext.getContext().getValueStack().set("joinca", joinCA);

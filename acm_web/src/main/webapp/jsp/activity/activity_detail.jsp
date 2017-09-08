@@ -42,7 +42,7 @@
             <td><s:property value="activity.activityBus"/></td>
             <td>
                 <a href="${pageContext.request.contextPath}/activityAction_associate.action?aid=<s:property value="activity.aid"/>"
-                   class="layui-btn"><i class="layui-icon">&#xe608;</i>为活动添加人员</a>
+                   class="layui-btn layui-btn-small"><i class="layui-icon">&#xe608;</i>为活动添加人员</a>
             </td>
         </tr>
         </tbody>
@@ -74,7 +74,7 @@
                 , {field: 'customerAge', title: '年龄', sort: true, width: 90, align: 'center', templet: '#ageTpl'}
                 , {field: 'discount', title: '折扣', width: 90, align: 'center'}
                 , {field: 'prepay', title: '预付', width: 90, align: 'center'}
-                , {field: 'payMethod', title: '方式', width: 120, align: 'center', templet: '#methodTpl'}
+                , {field: 'payMethod', title: '方式', sort: true,width: 120, align: 'center', templet: '#methodTpl'}
                 , {field: 'restPay', title: '余款', sort: true, width: 120, align: 'center'}
                 , {field: 'jnote', title: '备注信息', width: 120, align: 'center'}
                 , {fixed: 'right', title: '操作', width: 250, align: 'center', toolbar: '#barDemo'}

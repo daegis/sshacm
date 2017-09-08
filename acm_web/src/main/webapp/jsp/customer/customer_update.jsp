@@ -115,7 +115,7 @@
                         layer.alert(data.message, {
                             title: '提示信息'
                         }, function () {
-                            window.location = "${pageContext.request.contextPath}/jsp/customer_list.jsp";
+                            window.location = "customer_list.jsp";
                         })
                     } else {
                         layer.alert(data.message, {

@@ -108,7 +108,7 @@
                                 layer.close(index2);
                                 document.getElementById("reset").click();
                             }, function () {
-                                window.location = "${pageContext.request.contextPath}/jsp/customer_list.jsp";
+                                window.location = "customer_list.jsp";
                             });
                         })
                     } else {

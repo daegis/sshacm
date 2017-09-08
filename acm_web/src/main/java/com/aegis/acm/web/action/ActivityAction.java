@@ -49,7 +49,7 @@ public class ActivityAction extends BaseAction<Activity> {
     }
 
     @Action(value = "activityAction_update", results =
-    @Result(name = "toUpdate", type = "dispatcher", location = "/jsp/activity_update.jsp"))
+    @Result(name = "toUpdate", type = "dispatcher", location = "/jsp/activity/activity_update.jsp"))
     public String update() {
         model = activityService.findByAid(model.getAid());
         ActionContext.getContext().getValueStack().set("activity", model);
@@ -57,7 +57,7 @@ public class ActivityAction extends BaseAction<Activity> {
     }
 
     @Action(value = "activityAction_detail", results =
-    @Result(name = "toDetail", type = "dispatcher", location = "/jsp/activity_detail.jsp"))
+    @Result(name = "toDetail", type = "dispatcher", location = "/jsp/activity/activity_detail.jsp"))
     public String detail() {
         model = activityService.findByAid(model.getAid());
         ActionContext.getContext().getValueStack().set("activity", model);
@@ -81,7 +81,7 @@ public class ActivityAction extends BaseAction<Activity> {
     }
 
     @Action(value = "activityAction_associate", results =
-    @Result(name = "toAssociation", type = "dispatcher", location = "/jsp/join_ca_add.jsp"))
+    @Result(name = "toAssociation", type = "dispatcher", location = "/jsp/join/join_ca_add.jsp"))
     public String forAssociation() {
         model = activityService.findByAid(model.getAid());
         ActionContext.getContext().getValueStack().set("activity", model);

@@ -31,6 +31,7 @@ public class CustomerAction extends BaseAction<Customer> {
     private ActivityService activityService;
 
     private String keyword;
+    private String aid;
 
     @Action("customerAction_findByPage")
     public void findByPage() {
@@ -86,7 +87,7 @@ public class CustomerAction extends BaseAction<Customer> {
     }
 
     @Action(value = "customerAction_update", results =
-    @Result(name = "toUpdate", type = "dispatcher", location = "/jsp/customer_update.jsp"))
+    @Result(name = "toUpdate", type = "dispatcher", location = "/jsp/customer/customer_update.jsp"))
     public String update() {
         model = customerService.findByCid(model.getCid());
         ActionContext.getContext().getValueStack().set("customer", model);
@@ -94,7 +95,7 @@ public class CustomerAction extends BaseAction<Customer> {
     }
 
     @Action(value = "customerAction_associateActivity", results =
-    @Result(name = "toAssociation", type = "dispatcher", location = "/jsp/customer_association.jsp"))
+    @Result(name = "toAssociation", type = "dispatcher", location = "/jsp/customer/customer_association.jsp"))
     public String associateActivity() {
         Customer customer = customerService.findByCid(model.getCid());
         List<Activity> activityList = activityService.findForCustomer(model.getCid());
@@ -103,7 +104,16 @@ public class CustomerAction extends BaseAction<Customer> {
         return "toAssociation";
     }
 
+    @Action("customerAction_findByNotInActivity")
+    public void findByNotInActivity() {
+        System.out.println(aid);
+    }
+
     public void setKeyword(String keyword) {
         this.keyword = keyword;
+    }
+
+    public void setAid(String aid) {
+        this.aid = aid;
     }
 }
