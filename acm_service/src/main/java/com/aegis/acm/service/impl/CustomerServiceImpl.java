@@ -69,4 +69,14 @@ public class CustomerServiceImpl implements CustomerService {
     public Page<Customer> findByPage(Specification<Customer> specification, Pageable pageable) {
         return customerDao.findAll(specification, pageable);
     }
+
+    @Override
+    public List<Customer> findByNotInActivity(String aid, String keyword, Integer page, Integer limit) {
+        return customerDao.findByNotInActivity(aid, keyword, keyword, keyword, keyword, page, limit);
+    }
+
+    @Override
+    public int findByNotInActivityCount(String aid, String keyword) {
+        return customerDao.findByNotInActivityCount(aid, keyword, keyword, keyword, keyword);
+    }
 }

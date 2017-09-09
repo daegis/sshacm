@@ -19,4 +19,8 @@ public interface CustomerService {
     Page<Customer> findByPage(Pageable pageable);
 
     Page<Customer> findByPage(Specification<Customer> specification, Pageable pageable);
+
+    List<Customer> findByNotInActivity(String aid, String keyword, Integer page, Integer limit);
+
+    int findByNotInActivityCount(String aid, String keyword);
 }

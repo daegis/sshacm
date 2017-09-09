@@ -79,6 +79,8 @@
                 , {fixed: 'right', width: 100, align: 'center', toolbar: '#bar'}
             ]],
             page: true,
+            limits: [8, 10, 20, 30, 50],
+            limit: 8,
             <%--url: '${pageContext.request.contextPath}/customerAction_findByPage.action'--%>
             url: '${pageContext.request.contextPath}/customerAction_findByNotInActivity.action?aid=<s:property value="activity.aid"/>'
         });
@@ -90,6 +92,12 @@
                     offset: '100px',
                     title: '成功通知'
                 }, function (index) {
+                    var $keyword = $('#reloadInput').val();
+                    tableIns.reload({
+                        where: {
+                            keyword: $keyword
+                        }
+                    });
                     layer.close(index);
                 });
             }
