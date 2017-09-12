@@ -87,19 +87,31 @@
         table.on('tool(dataTable)', function (obj) {
             var data = obj.data;
             if (obj.event === 'detail') {
-                layer.alert('添加成功, 请稍后到活动详情中编辑该人员的活动信息' + data.cid + ':' +<s:property value="activity.aid"/>, {
-                    icon: 1,
-                    offset: '100px',
-                    title: '成功通知'
-                }, function (index) {
-                    var $keyword = $('#reloadInput').val();
-                    tableIns.reload({
-                        where: {
-                            keyword: $keyword
+                $.ajax({
+                    url: '',
+                    type: '',
+                    data: '',
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.success) {
+                            layer.alert('添加成功, 请稍后到活动详情中编辑该人员的活动信息' + data.cid + ':' +<s:property value="activity.aid"/>, {
+                                icon: 1,
+                                offset: '100px',
+                                title: '成功通知'
+                            }, function (index) {
+                                var $keyword = $('#reloadInput').val();
+                                tableIns.reload({
+                                    where: {
+                                        keyword: $keyword
+                                    }
+                                });
+                                layer.close(index);
+                            });
+                        } else {
+
                         }
-                    });
-                    layer.close(index);
-                });
+                    }
+                })
             }
         });
         $('#reloadBtn').on('click', function () {
