@@ -106,19 +106,23 @@ public class CustomerAction extends BaseAction<Customer> {
 
     @Action("customerAction_findByNotInActivity")
     public void findByNotInActivity() {
-        if (keyword == null) {
-            keyword = "";
+        try {
+            if (keyword == null) {
+                keyword = "";
+            }
+            page = (page - 1) * limit;
+            keyword = "%" + keyword + "%";
+            List<Customer> customerList = customerService.findByNotInActivity(aid, keyword, page, limit);
+            int count = customerService.findByNotInActivityCount(aid, keyword);
+            Map<String, Object> map = new LinkedHashMap<>();
+            map.put("code", 0);
+            map.put("msg", "");
+            map.put("count", count);
+            map.put("data", customerList);
+            doAjaxResponse(map, "caList");
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        page = (page - 1) * limit;
-        keyword = "%" + keyword + "%";
-        List<Customer> customerList = customerService.findByNotInActivity(aid, keyword, page, limit);
-        int count = customerService.findByNotInActivityCount(aid, keyword);
-        Map<String, Object> map = new LinkedHashMap<>();
-        map.put("code", 0);
-        map.put("msg", "");
-        map.put("count", count);
-        map.put("data", customerList);
-        doAjaxResponse(map, "caList");
     }
 
     public void setKeyword(String keyword) {

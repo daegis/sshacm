@@ -23,8 +23,8 @@ public class UserAction extends BaseAction<User> {
     @Action("userAction_login")
     public void login() {
         String sessionCaptcha = (String) ServletActionContext.getRequest().getSession().getAttribute("captcha");
-        if (sessionCaptcha == null || !sessionCaptcha.equals(captcha)) {
-            doAjaxResponseResultMap(false, "验证码不正确, 请注意所有的圈都是数字0");
+        if (sessionCaptcha == null || !sessionCaptcha.toLowerCase().equals(captcha.toLowerCase())) {
+            doAjaxResponseResultMap(false, "验证码不正确, 请注意所有的圈都是数字0. 同时, 验证码不区分大小写");
             return;
         }
         UsernamePasswordToken token = new UsernamePasswordToken(model.getUsername(), model.getPassword());
