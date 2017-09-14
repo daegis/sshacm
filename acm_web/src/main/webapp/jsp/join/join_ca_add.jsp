@@ -88,13 +88,13 @@
             var data = obj.data;
             if (obj.event === 'detail') {
                 $.ajax({
-                    url: '',
-                    type: '',
-                    data: '',
+                    url: '${pageContext.request.contextPath}/joinAction_doAssociation.action',
+                    type: 'post',
+                    data: {'activity.aid': <s:property value="activity.aid"/>, 'customer.cid': data.cid},
                     dataType: 'json',
                     success: function (data) {
                         if (data.success) {
-                            layer.alert('添加成功, 请稍后到活动详情中编辑该人员的活动信息' + data.cid + ':' +<s:property value="activity.aid"/>, {
+                            layer.alert('添加成功, 请稍后到活动详情中编辑该人员的活动信息', {
                                 icon: 1,
                                 offset: '100px',
                                 title: '成功通知'
@@ -108,7 +108,7 @@
                                 layer.close(index);
                             });
                         } else {
-
+                            layer.alert(data.message);
                         }
                     }
                 })

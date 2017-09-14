@@ -54,6 +54,12 @@ public class JoinCAServiceImpl implements JoinCAService {
         if (model.getJoinDate() == null) {
             model.setJoinDate(new Date());
         }
+        if (model.getDiscount() == null) {
+            model.setDiscount(0);
+        }
+        if (model.getPrepay() == null) {
+            model.setPrepay(0);
+        }
         joinCADao.save(model);
     }
 

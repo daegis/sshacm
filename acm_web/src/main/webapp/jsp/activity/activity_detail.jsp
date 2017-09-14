@@ -121,6 +121,8 @@
 <script type="text/html" id="methodTpl">
     {{#  if(d.payMethod === '未付款'){ }}
     <span style="color: red">{{ d.payMethod }}</span>
+    {{#  } else if(d.payMethod === undefined){ }}
+    <span style="color: dodgerblue">{{ '需要更新' }}</span>
     {{#  } else { }}
     {{ d.payMethod }}
     {{#  } }}
