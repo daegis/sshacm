@@ -27,6 +27,7 @@ public class UserAction extends BaseAction<User> {
             doAjaxResponseResultMap(false, "验证码不正确, 请注意所有的圈都是数字0. 同时, 验证码不区分大小写");
             return;
         }
+        ServletActionContext.getRequest().getSession().removeAttribute("captcha");
         UsernamePasswordToken token = new UsernamePasswordToken(model.getUsername(), model.getPassword());
         Subject subject = SecurityUtils.getSubject();
         try {

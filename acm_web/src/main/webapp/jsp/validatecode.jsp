@@ -21,17 +21,19 @@
     g.drawRect(0, 0, width - 1, height - 1);
     // create a random instance to generate the codes
     Random rdm = new Random();
-    String hash1 = Integer.toHexString(rdm.nextInt());
-    // make some confusion
+    String line = "WERTYPASDFGHJKZXCVBNM23456789";
+    StringBuffer stringBuffer = new StringBuffer();
+    for (int i = 0; i < 4; i++) {
+        stringBuffer.append(line.charAt(rdm.nextInt(line.length())));
+    }
     for (int i = 0; i < 50; i++) {
         int x = rdm.nextInt(width);
         int y = rdm.nextInt(height);
         g.drawOval(x, y, 0, 0);
     }
     // generate a random code
-    String capstr = hash1.substring(0, 4);
+    String capstr = stringBuffer.toString();
     session.setAttribute("captcha", capstr);
-    capstr = capstr.toUpperCase();
     g.setColor(new Color(0, 100, 0));
     g.setFont(new Font("Candara", Font.BOLD, 24));
     g.drawString(capstr, 8, 24);
