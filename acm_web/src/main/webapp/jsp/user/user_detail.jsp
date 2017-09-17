@@ -70,9 +70,6 @@
             });
             return false;
         });
-        laydate.render({
-            elem: '#date'
-        });
     });
 </script>
 </body>

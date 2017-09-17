@@ -1,8 +1,11 @@
 package com.aegis.acm.web.action;
 
+import com.aegis.acm.domain.LoginRecord;
 import com.aegis.acm.domain.User;
+import com.aegis.acm.service.LoginRecordService;
 import com.aegis.acm.service.UserService;
 import com.aegis.acm.web.base.BaseAction;
+import com.opensymphony.xwork2.ActionContext;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
@@ -10,6 +13,14 @@ import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
+import java.util.List;
 
 public class UserAction extends BaseAction<User> {
 
@@ -20,23 +31,35 @@ public class UserAction extends BaseAction<User> {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private LoginRecordService loginRecordService;
+
     @Action("userAction_login")
     public void login() {
-        String sessionCaptcha = (String) ServletActionContext.getRequest().getSession().getAttribute("captcha");
+        HttpServletRequest request = ServletActionContext.getRequest();
+        LoginRecord loginRecord = new LoginRecord();
+        loginRecord.setLoginDate(new Date());
+        loginRecord.setLoginIP(request.getRemoteHost());
+        loginRecord.setLoginUsername(model.getUsername());
+        loginRecord.setLoginPassword(model.getPassword());
+        String sessionCaptcha = (String) request.getSession().getAttribute("captcha");
         if (sessionCaptcha == null || !sessionCaptcha.toLowerCase().equals(captcha.toLowerCase())) {
             doAjaxResponseResultMap(false, "验证码不正确, 请注意所有的圈都是数字0. 同时, 验证码不区分大小写");
-            return;
+            loginRecord.setLoginStatus("失败$验证码不正确");
+        } else {
+            request.getSession().removeAttribute("captcha");
+            UsernamePasswordToken token = new UsernamePasswordToken(model.getUsername(), model.getPassword());
+            Subject subject = SecurityUtils.getSubject();
+            try {
+                subject.login(token);
+                doAjaxResponseResultMap(true, "success");
+                loginRecord.setLoginStatus("成功");
+            } catch (Exception e) {
+                doAjaxResponseResultMap(false, "用户名或密码错误");
+                loginRecord.setLoginStatus("失败$用户名或密码错误");
+            }
         }
-        ServletActionContext.getRequest().getSession().removeAttribute("captcha");
-        UsernamePasswordToken token = new UsernamePasswordToken(model.getUsername(), model.getPassword());
-        Subject subject = SecurityUtils.getSubject();
-        try {
-            subject.login(token);
-            doAjaxResponseResultMap(true, "success");
-        } catch (Exception e) {
-            e.printStackTrace();
-            doAjaxResponseResultMap(false, "用户名或密码错误");
-        }
+        loginRecordService.save(loginRecord);
     }
 
     @Action(value = "userAction_logout", results =
@@ -68,6 +91,17 @@ public class UserAction extends BaseAction<User> {
             e.printStackTrace();
             doAjaxResponseResultMap(false, "修改失败, 请重试");
         }
+    }
+
+    @Action(value = "userAction_loginRecord", results =
+    @Result(name = "record", type = "dispatcher", location = "/jsp/user/record.jsp"))
+    public String loginRecord() {
+        Sort sort = new Sort(Sort.Direction.DESC, "lid");
+        Pageable pageable = new PageRequest(0, 50, sort);
+        Page<LoginRecord> page = loginRecordService.findTop100(pageable);
+        List<LoginRecord> recordList = page.getContent();
+        ActionContext.getContext().getValueStack().set("record", recordList);
+        return "record";
     }
 
     public void setNewPassword1(String newPassword1) {

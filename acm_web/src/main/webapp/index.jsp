@@ -82,7 +82,8 @@
                         <dd>
                             <a href="${pageContext.request.contextPath}/jsp/user/user_detail.jsp" target="mainFrame">修改密码</a>
                         </dd>
-                        <dd><a href="javascript:;">权限设置(待完善)</a></dd>
+                        <dd><a href="${pageContext.request.contextPath}/userAction_loginRecord.action"
+                               target="mainFrame">登录记录查询</a></dd>
                     </dl>
                 </li>
                 <%--<li class="layui-nav-item"><a href="">云市场</a></li>--%>
@@ -93,7 +94,8 @@
 
     <div class="layui-body" style="overflow: hidden">
         <!-- 内容主体区域 -->
-        <iframe src="${pageContext.request.contextPath}/html/index.html" frameborder="0" name="mainFrame" width="100%" height="100%"></iframe>
+        <iframe src="${pageContext.request.contextPath}/html/index.html" frameborder="0" name="mainFrame" width="100%"
+                height="100%"></iframe>
     </div>
 
     <div class="layui-footer">
