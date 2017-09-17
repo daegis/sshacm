@@ -78,7 +78,7 @@
                         layer.alert(data.message, {
                             title: '提示信息'
                         }, function () {
-                            window.location = "activity_list.jsp";
+                            window.location = "${pageContext.request.contextPath}/jsp/activity/activity_list.jsp";
                         })
                     } else {
                         layer.alert(data.message, {
