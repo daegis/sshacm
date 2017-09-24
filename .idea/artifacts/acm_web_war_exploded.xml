@@ -19,6 +19,9 @@
           <element id="archive" name="acm_utils-1.0-SNAPSHOT.jar">
             <element id="module-output" name="acm_utils" />
           </element>
+          <element id="archive" name="acm_logging-1.0-SNAPSHOT.jar">
+            <element id="module-output" name="acm_logging" />
+          </element>
           <element id="library" level="project" name="Maven: org.apache.shiro:shiro-all:1.2.2" />
           <element id="library" level="project" name="Maven: org.apache.shiro:shiro-guice:1.2.2" />
           <element id="library" level="project" name="Maven: org.apache.shiro:shiro-core:1.2.2" />

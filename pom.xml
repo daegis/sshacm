@@ -13,6 +13,7 @@
         <module>acm_dao</module>
         <module>acm_service</module>
         <module>acm_web</module>
+        <module>acm_logging</module>
     </modules>
 
     <packaging>pom</packaging>

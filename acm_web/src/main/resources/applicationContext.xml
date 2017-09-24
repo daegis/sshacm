@@ -39,7 +39,7 @@
                 <property name="generateDdl" value="true"/>
                 <property name="database" value="MYSQL"/>
                 <property name="databasePlatform" value="org.hibernate.dialect.MySQL57InnoDBDialect"/>
-                <property name="showSql" value="true"/>
+                <property name="showSql" value="false"/>
             </bean>
         </property>
         <property name="jpaDialect">
@@ -53,13 +53,15 @@
     </bean>
 
     <!-- 组件扫描 @Server @Controller @Repository -->
-    <context:component-scan base-package="com.aegis.acm.service,com.aegis.acm.web"/>
+    <context:component-scan base-package="com.aegis.acm.service,com.aegis.acm.web,com.aegis.acm.log"/>
 
     <!-- 事务注解支持 -->
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
     <!-- 整合 spring data jpa -->
     <jpa:repositories base-package="com.aegis.acm.dao"/>
+
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
 
 
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">

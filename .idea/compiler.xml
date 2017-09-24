@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="acm_dao" />
         <module name="acm_domain" />
+        <module name="acm_logging" />
         <module name="acm_service" />
         <module name="acm_utils" />
         <module name="acm_web" />
@@ -16,6 +17,7 @@
     <bytecodeTargetLevel>
       <module name="acm_dao" target="1.8" />
       <module name="acm_domain" target="1.8" />
+      <module name="acm_logging" target="1.8" />
       <module name="acm_main_parent" target="1.5" />
       <module name="acm_service" target="1.8" />
       <module name="acm_utils" target="1.8" />

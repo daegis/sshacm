@@ -23,4 +23,6 @@ public interface CustomerService {
     List<Customer> findByNotInActivity(String aid, String keyword, Integer page, Integer limit);
 
     int findByNotInActivityCount(String aid, String keyword);
+
+    Customer findByIdNum(String idNum);
 }

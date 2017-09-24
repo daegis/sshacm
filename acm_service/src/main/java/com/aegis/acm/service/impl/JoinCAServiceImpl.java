@@ -1,5 +1,6 @@
 package com.aegis.acm.service.impl;
 
+import com.aegis.acm.commons.SystemLog;
 import com.aegis.acm.dao.ActivityDao;
 import com.aegis.acm.dao.CustomerDao;
 import com.aegis.acm.dao.JoinCADao;

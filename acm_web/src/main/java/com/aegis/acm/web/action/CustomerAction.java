@@ -1,10 +1,10 @@
 package com.aegis.acm.web.action;
 
-import com.aegis.acm.dao.CustomerDao;
 import com.aegis.acm.domain.Activity;
 import com.aegis.acm.domain.Customer;
 import com.aegis.acm.service.ActivityService;
 import com.aegis.acm.service.CustomerService;
+import com.aegis.acm.utils.IDNumberUtil;
 import com.aegis.acm.web.base.BaseAction;
 import com.opensymphony.xwork2.ActionContext;
 import org.apache.struts2.convention.annotation.Action;
@@ -78,11 +78,30 @@ public class CustomerAction extends BaseAction<Customer> {
     public void save() {
         try {
             model.setFirstAdd(new Date());
+            String idNumber = model.getIdNumber();
+            if (idNumber == null || "".equals(idNumber)) {
+                customerService.save(model);
+                doAjaxResponseResultMap(true, "操作成功");
+                return;
+            }
+            boolean isValid = IDNumberUtil.checkID(idNumber);
+            if (!isValid) {
+                doAjaxResponseResultMap(false, "身份证号码校验不通过! 请注意: 一个非法的身份证号码录入是" +
+                        "没有意义的, 本系统的校验方式和公安局的相同, 请仔细核查后重新进行输入. 暂时无法获取正确身份证号" +
+                        "的情况下, 请将身份证号留空.");
+                return;
+            }
+            Customer customer = customerService.findByIdNum(idNumber);
+            if (customer != null && !Objects.equals(customer.getCid(), model.getCid())) {
+                doAjaxResponseResultMap(false, "身份证号码与现有记录重复! 请注意: 没有两个人的身份证号是" +
+                        "相同的, 请到相应功能页面搜索关键字对现有人员进行查找.");
+                return;
+            }
             customerService.save(model);
-            doAjaxResponseResultMap(true, "保存成功");
+            doAjaxResponseResultMap(true, "操作成功");
         } catch (Exception e) {
             e.printStackTrace();
-            doAjaxResponseResultMap(false, "保存失败, 错误信息:" + e.getMessage() + ", 请截图联系管理员.");
+            doAjaxResponseResultMap(false, "操作失败, 错误信息:" + e.getMessage() + ", 请截图联系管理员.");
         }
     }
 

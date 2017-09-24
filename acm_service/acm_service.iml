@@ -19,6 +19,7 @@
     <orderEntry type="module" module-name="acm_dao" />
     <orderEntry type="module" module-name="acm_domain" />
     <orderEntry type="module" module-name="acm_utils" />
+    <orderEntry type="module" module-name="acm_logging" />
     <orderEntry type="library" name="Maven: org.apache.shiro:shiro-all:1.2.2" level="project" />
     <orderEntry type="library" name="Maven: org.apache.shiro:shiro-guice:1.2.2" level="project" />
     <orderEntry type="library" name="Maven: org.apache.shiro:shiro-core:1.2.2" level="project" />

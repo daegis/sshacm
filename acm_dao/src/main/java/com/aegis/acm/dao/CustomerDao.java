@@ -14,4 +14,6 @@ public interface CustomerDao extends JpaRepository<Customer, Integer>, JpaSpecif
 
     @Query(value = "SELECT count(*) FROM customers c WHERE c.cid NOT IN ( SELECT cid FROM joinca j WHERE j.aid = ?) AND (c. NAME LIKE ? OR c.nickname LIKE ? OR c.address LIKE ? OR c.mobile LIKE ?)", nativeQuery = true)
     int findByNotInActivityCount(String aid, String keyword, String keyword1, String keyword2, String keyword3);
+
+    List<Customer> findByIdNumber(String idNum);
 }
