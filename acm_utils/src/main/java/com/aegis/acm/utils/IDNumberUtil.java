@@ -50,12 +50,12 @@ public class IDNumberUtil {
         }
         if (monthMinus == 0) {
             if (dayMinus < 0) {
-                return String.valueOf(age);
+                return String.valueOf(age - 1);
             } else {
-                return String.valueOf(age + 1);
+                return String.valueOf(age);
             }
         }
-        return String.valueOf(age + 1);
+        return String.valueOf(age);
     }
 
     public static String getDOB(String no) {
