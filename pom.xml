@@ -23,11 +23,9 @@
         <struts2.version>2.3.24</struts2.version>
         <hibernate.version>5.0.7.Final</hibernate.version>
         <slf4j.version>1.6.6</slf4j.version>
-        <springdataredis.version>1.4.1.RELEASE</springdataredis.version>
         <activemq.version>5.2.0</activemq.version>
         <shiro.version>1.2.2</shiro.version>
         <springdatajpa.version>1.10.4.RELEASE</springdatajpa.version>
-        <jedis.version>2.6.2</jedis.version>
         <poi.version>3.11</poi.version>
         <c3p0.version>0.9.1.2</c3p0.version>
         <cxf.version>3.0.1</cxf.version>
@@ -151,12 +149,6 @@
         </dependency>
 
         <dependency>
-            <groupId>org.springframework.data</groupId>
-            <artifactId>spring-data-redis</artifactId>
-            <version>${springdataredis.version}</version>
-        </dependency>
-
-        <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.32</version>
@@ -261,12 +253,6 @@
             <artifactId>mail</artifactId>
             <version>1.4</version>
         </dependency>
-        <dependency>
-            <groupId>redis.clients</groupId>
-            <artifactId>jedis</artifactId>
-            <version>${jedis.version}</version>
-            <scope>compile</scope>
-        </dependency>
         <!-- 缓存 -->
         <dependency>
             <groupId>net.sf.ehcache</groupId>
@@ -287,6 +273,32 @@
             <groupId>org.apache.xbean</groupId>
             <artifactId>xbean-spring</artifactId>
             <version>4.2</version>
+        </dependency>
+
+
+        <!-- Jedis -->
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>2.9.0</version>
+        </dependency>
+        <!-- Spring Data Redis -->
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-redis</artifactId>
+            <version>1.7.3.RELEASE</version>
+        </dependency>
+        <!-- Spring Session -->
+        <dependency>
+            <groupId>org.springframework.session</groupId>
+            <artifactId>spring-session</artifactId>
+            <version>1.2.2.RELEASE</version>
+        </dependency>
+        <!-- Apache Commons Pool -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
+            <version>2.4.2</version>
         </dependency>
 
     </dependencies>

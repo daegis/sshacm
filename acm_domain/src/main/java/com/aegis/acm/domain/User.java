@@ -1,10 +1,11 @@
 package com.aegis.acm.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-public class User {
+public class User implements Serializable {
 
     @Id
     @Column
