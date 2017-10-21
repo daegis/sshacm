@@ -8,7 +8,6 @@
         <outputRelativeToContentRoot value="true" />
         <module name="acm_dao" />
         <module name="acm_domain" />
-        <module name="acm_logging" />
         <module name="acm_service" />
         <module name="acm_utils" />
         <module name="acm_web" />
