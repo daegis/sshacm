@@ -1,6 +1,5 @@
 package com.aegis.acm.service.impl;
 
-import com.aegis.acm.commons.SystemLog;
 import com.aegis.acm.dao.ActivityDao;
 import com.aegis.acm.dao.CustomerDao;
 import com.aegis.acm.dao.JoinCADao;
@@ -31,7 +30,6 @@ public class CustomerServiceImpl implements CustomerService {
     @Autowired
     private JoinCADao joinCADao;
 
-    @SystemLog(description = "人员的添加或修改")
     @Override
     public void save(Customer customer) {
         customerDao.save(customer);
@@ -47,7 +45,6 @@ public class CustomerServiceImpl implements CustomerService {
         return customerDao.findOne(cid);
     }
 
-    @SystemLog(description = "为人员指定一个活动")
     @Override
     public void addActivity(Integer cid, Integer aid) {
         Customer customer = customerDao.findOne(cid);

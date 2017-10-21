@@ -44,14 +44,7 @@
         <div class="layui-inline">
             <label class="layui-form-label">单选框</label>
             <div class="layui-input-block">
-                <s:if test='customer.gender=="男"'>
-                    <input type="radio" name="gender" value="男" title="男" checked="">
-                    <input type="radio" name="gender" value="女" title="女">
-                </s:if>
-                <s:else>
-                    <input type="radio" name="gender" value="男" title="男">
-                    <input type="radio" name="gender" value="女" title="女" checked="">
-                </s:else>
+                <input type="radio" name="gender" value="" title="系统根据身份证号自动生成" checked="">
             </div>
         </div>
     </div>

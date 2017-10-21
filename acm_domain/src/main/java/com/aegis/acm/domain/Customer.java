@@ -81,7 +81,7 @@ public class Customer {
     }
 
     public String getGender() {
-        return gender;
+        return IDNumberUtil.getGender(this.idNumber);
     }
 
     public String getSpecial() {

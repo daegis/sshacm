@@ -47,6 +47,8 @@ public class CustomerAction extends BaseAction<Customer> {
                     if (keyword.matches("[0-9]+")) {
                         Predicate mobile = cb.like(root.get("mobile").as(String.class), keywordLike);
                         predicateList.add(mobile);
+                        Predicate id = cb.like(root.get("idNumber").as(String.class), keywordLike);
+                        predicateList.add(id);
                     }
                     Predicate name = cb.like(root.get("name").as(String.class), keywordLike);
                     predicateList.add(name);
@@ -88,7 +90,7 @@ public class CustomerAction extends BaseAction<Customer> {
             if (!isValid) {
                 doAjaxResponseResultMap(false, "身份证号码校验不通过! 请注意: 一个非法的身份证号码录入是" +
                         "没有意义的, 本系统的校验方式和公安局的相同, 请仔细核查后重新进行输入. 暂时无法获取正确身份证号" +
-                        "的情况下, 请将身份证号留空.");
+                        "的情况下, 请将身份证号留空.另外: 身份证最后一位X是大写字母.");
                 return;
             }
             Customer customer = customerService.findByIdNum(idNumber);

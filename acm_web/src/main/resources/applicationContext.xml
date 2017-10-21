@@ -22,6 +22,9 @@
         <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/finalacm"/>
         <property name="user" value="root"/>
         <property name="password" value="boot"/>
+        <property name="automaticTestTable" value="systemrecord"/>
+        <property name="idleConnectionTestPeriod" value="7200"/>
+        <property name="testConnectionOnCheckin" value="false"/>
     </bean>
 
     <!-- spring整合JPA -->
@@ -60,8 +63,6 @@
 
     <!-- 整合 spring data jpa -->
     <jpa:repositories base-package="com.aegis.acm.dao"/>
-
-    <aop:aspectj-autoproxy proxy-target-class="true"/>
 
 
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">

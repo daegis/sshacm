@@ -74,7 +74,7 @@ public class IDNumberUtil {
 
     public static String getGender(String no) {
         if (!checkID(no)) {
-            return "非法身份证号码";
+            return "错ID";
         }
         char c = no.charAt(16);
         int gender = c - '0';

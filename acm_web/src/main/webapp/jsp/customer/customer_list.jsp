@@ -70,7 +70,7 @@
 </script>
 <script type="text/html" id="sexTpl">
     {{#  if(d.gender === '女'){ }}
-    <span style="color: #F581B1;">{{ d.gender }}</span>
+    <span style="color: deeppink;">{{ d.gender }}</span>
     {{#  } else { }}
     {{ d.gender }}
     {{#  } }}

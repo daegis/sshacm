@@ -71,10 +71,11 @@
                 , {field: 'customerNickname', title: '昵称', width: 120, align: 'center'}
                 , {field: 'customerName', title: '姓名', width: 90, align: 'center'}
                 , {field: 'joinTime', title: '报名日期', sort: true, width: 120, align: 'center'}
-                , {field: 'customerAge', title: '年龄', sort: true, width: 90, align: 'center', templet: '#ageTpl'}
+                , {field: 'customerGender', title: '性别', sort: true, width: 75, align: 'center', templet: '#genderTpl'}
+                , {field: 'customerAge', title: '年龄', sort: true, width: 75, align: 'center', templet: '#ageTpl'}
                 , {field: 'discount', title: '折扣', width: 90, align: 'center'}
                 , {field: 'prepay', title: '预付', width: 90, align: 'center'}
-                , {field: 'payMethod', title: '方式', sort: true,width: 120, align: 'center', templet: '#methodTpl'}
+                , {field: 'payMethod', title: '方式', sort: true, width: 120, align: 'center', templet: '#methodTpl'}
                 , {field: 'restPay', title: '余款', sort: true, width: 120, align: 'center'}
                 , {field: 'jnote', title: '备注信息', width: 120, align: 'center'}
                 , {fixed: 'right', title: '操作', width: 250, align: 'center', toolbar: '#barDemo'}
@@ -125,6 +126,15 @@
     <span style="color: dodgerblue">{{ '需要更新' }}</span>
     {{#  } else { }}
     {{ d.payMethod }}
+    {{#  } }}
+</script>
+<script type="text/html" id="genderTpl">
+    {{#  if(d.customerGender === '错ID'){ }}
+    <span style="color: red">{{ '非法ID' }}</span>
+    {{#  } else if(d.customerGender === '女'){ }}
+    <span style="color: deeppink">{{ d.customerGender }}</span>
+    {{#  } else { }}
+    {{ d.customerGender }}
     {{#  } }}
 </script>
 <script type="text/html" id="ageTpl">

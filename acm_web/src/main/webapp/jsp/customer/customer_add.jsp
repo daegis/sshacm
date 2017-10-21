@@ -35,8 +35,7 @@
         <div class="layui-inline">
             <label class="layui-form-label">性别</label>
             <div class="layui-input-block">
-                <input type="radio" name="gender" value="男" title="男" checked="">
-                <input type="radio" name="gender" value="女" title="女">
+                <input type="radio" name="gender" value="" title="系统根据身份证号自动生成" checked="">
             </div>
         </div>
     </div>
@@ -53,13 +52,6 @@
         <div class="layui-input-block">
             <input type="text" name="address" placeholder="输入地址" autocomplete="off"
                    class="layui-input">
-        </div>
-    </div>
-
-    <div class="layui-form-item">
-        <label class="layui-form-label">特殊照顾</label>
-        <div class="layui-input-block">
-            <input type="checkbox" name="special" lay-skin="switch" lay-text="ON|OFF">
         </div>
     </div>
 

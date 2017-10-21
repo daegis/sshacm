@@ -1,6 +1,5 @@
 package com.aegis.acm.service.impl;
 
-import com.aegis.acm.commons.SystemLog;
 import com.aegis.acm.dao.ActivityDao;
 import com.aegis.acm.domain.Activity;
 import com.aegis.acm.domain.Customer;
@@ -26,6 +25,9 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * @author XIAN_Yingda
+ */
 @SuppressWarnings({"SpringAutowiredFieldsWarningInspection", "Duplicates"})
 @Service
 @Transactional
@@ -34,7 +36,6 @@ public class ActivityServiceImpl implements ActivityService {
     @Autowired
     private ActivityDao activityDao;
 
-    @SystemLog(description = "活动的添加或修改")
     @Override
     public void save(Activity activity) {
         if (activity.getActivityDate() == null) {
@@ -66,7 +67,6 @@ public class ActivityServiceImpl implements ActivityService {
         return activityDao.findForCustomer(cid);
     }
 
-    @SystemLog(description = "生成保险报表")
     @Override
     public void reportInsurance(Integer aid, FileInputStream in, ServletOutputStream outputStream) {
         Activity activity = activityDao.findOne(aid);
@@ -84,8 +84,6 @@ public class ActivityServiceImpl implements ActivityService {
                 row.getCell(2).setCellValue(customer.getName());
                 row.getCell(3).setCellValue("身份证");
                 row.getCell(4).setCellValue(customer.getIdNumber());
-//                row.getCell(5).setCellValue(IDNumberUtil.getDOB(customer.getIdNumber()));
-//                row.getCell(6).setCellValue(IDNumberUtil.getGender(customer.getIdNumber()));
                 row.getCell(7).setCellValue(customer.getMobile());
                 rowIndex++;
             }
@@ -95,7 +93,6 @@ public class ActivityServiceImpl implements ActivityService {
         }
     }
 
-    @SystemLog(description = "生成常规登记表")
     @Override
     public void reportNormalExcel(Integer aid, FileInputStream in, ServletOutputStream outputStream) {
         Activity activity = activityDao.findOne(aid);
