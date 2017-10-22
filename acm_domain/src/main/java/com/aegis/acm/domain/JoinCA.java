@@ -35,7 +35,7 @@ public class JoinCA {
         try {
             return activity.getActivityPrice() - discount - prepay;
         } catch (Exception e) {
-            return null;
+            return activity.getActivityPrice();
         }
     }
 
@@ -92,6 +92,9 @@ public class JoinCA {
     }
 
     public Integer getDiscount() {
+        if (discount == null) {
+            return 0;
+        }
         return discount;
     }
 
@@ -100,6 +103,9 @@ public class JoinCA {
     }
 
     public Integer getPrepay() {
+        if (prepay == null) {
+            return 0;
+        }
         return prepay;
     }
 

@@ -76,8 +76,7 @@ public class ActivityServiceImpl implements ActivityService {
             HSSFSheet sheet = book.getSheetAt(0);
             sheet.setForceFormulaRecalculation(true);
             int rowIndex = 15;
-            HSSFRow row = null;
-            HSSFCell cell = null;
+            HSSFRow row;
             for (JoinCA joinCA : caList) {
                 Customer customer = joinCA.getCustomer();
                 row = sheet.getRow(rowIndex);
@@ -102,16 +101,46 @@ public class ActivityServiceImpl implements ActivityService {
             HSSFSheet sheet = book.getSheetAt(0);
             sheet.setForceFormulaRecalculation(true);
             int rowIndex = 1;
-            HSSFRow row = null;
-            HSSFCell cell = null;
+            HSSFRow row;
             for (JoinCA joinCA : caList) {
                 Customer customer = joinCA.getCustomer();
                 row = sheet.createRow(rowIndex);
                 row.createCell(0).setCellValue(rowIndex);
                 row.createCell(1).setCellValue(customer.getName());
                 row.createCell(2).setCellValue(customer.getMobile());
-                row.createCell(3).setCellValue(IDNumberUtil.getGender(customer.getIdNumber()));
-                row.createCell(4).setCellValue(customer.getIdNumber());
+                row.createCell(3).setCellValue(customer.getAge());
+                row.createCell(4).setCellValue(IDNumberUtil.getGender(customer.getIdNumber()));
+                row.createCell(5).setCellValue(customer.getIdNumber());
+                rowIndex++;
+            }
+            book.write(outputStream);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void reportPaymentExcel(Integer aid, FileInputStream in, ServletOutputStream outputStream) {
+        Activity activity = activityDao.findOne(aid);
+        List<JoinCA> caList = activity.getCaList();
+        try {
+            HSSFWorkbook book = new HSSFWorkbook(in);
+            HSSFSheet sheet = book.getSheetAt(0);
+            sheet.setForceFormulaRecalculation(true);
+            int rowIndex = 1;
+            HSSFRow row;
+            for (JoinCA joinCA : caList) {
+                Customer customer = joinCA.getCustomer();
+                row = sheet.createRow(rowIndex);
+                row.createCell(0).setCellValue(customer.getNickname());
+                row.createCell(1).setCellValue(customer.getName());
+                row.createCell(2).setCellValue(activity.getActivityPrice());
+                row.createCell(3).setCellValue(joinCA.getDiscount());
+                row.createCell(4).setCellValue(joinCA.getPrepay());
+                row.createCell(5).setCellValue(joinCA.getRestPay());
+                row.createCell(8).setCellValue(joinCA.getPayMethod());
+                row.createCell(9).setCellValue(customer.getMobile());
+                row.createCell(10).setCellValue(customer.getIdNumber());
                 rowIndex++;
             }
             book.write(outputStream);

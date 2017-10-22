@@ -51,4 +51,15 @@ public class ReportAction extends BaseAction<Activity> {
         response.setHeader("content-disposition", "attachment;fileName=mingdan.xls");
         activityService.reportNormalExcel(model.getAid(), in, outputStream);
     }
+
+    @Action("reportAction_reportPayment")
+    public void reportPaymentExcel() throws Exception {
+        String filePath = ServletActionContext.getServletContext().getRealPath(File.separator)
+                + File.separator + "template" + File.separator + "payment.xls";
+        FileInputStream in = new FileInputStream(filePath);
+        HttpServletResponse response = ServletActionContext.getResponse();
+        ServletOutputStream outputStream = response.getOutputStream();
+        response.setHeader("content-disposition", "attachment;fileName=fukuanxinxi.xls");
+        activityService.reportPaymentExcel(model.getAid(), in, outputStream);
+    }
 }

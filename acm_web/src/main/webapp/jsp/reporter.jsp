@@ -35,6 +35,8 @@
                        class="layui-btn layui-btn-small" target="_blank">免责声明</a>
                     <a href="${pageContext.request.contextPath}/reportAction_reportNormalExcel.action?aid=<s:property value="aid"/>"
                        class="layui-btn layui-btn-small layui-btn-danger">常规登记表</a>
+                    <a href="${pageContext.request.contextPath}/reportAction_reportPayment.action?aid=<s:property value="aid"/>"
+                       class="layui-btn layui-btn-small" target="_blank">交费信息登记表</a>
                 </td>
             </tr>
         </s:iterator>

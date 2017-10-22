@@ -22,4 +22,6 @@ public interface ActivityService {
     void reportInsurance(Integer aid, FileInputStream in, ServletOutputStream outputStream);
 
     void reportNormalExcel(Integer aid, FileInputStream in, ServletOutputStream outputStream);
+
+    void reportPaymentExcel(Integer aid, FileInputStream in, ServletOutputStream outputStream);
 }
