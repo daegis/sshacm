@@ -88,6 +88,14 @@ public class ActivityAction extends BaseAction<Activity> {
         return "toAssociation";
     }
 
+    @Action(value = "activityAction_seats", results =
+    @Result(name = "toSeat", type = "dispatcher", location = "/jsp/position/bus.jsp"))
+    public String forSeats() {
+        model = activityService.findByAid(model.getAid());
+        ActionContext.getContext().getValueStack().set("activity", model);
+        return "toSeat";
+    }
+
     @Action(value = "activityAction_report", results =
     @Result(name = "toReport", type = "dispatcher", location = "/jsp/reporter.jsp"))
     public String forReport() {

@@ -18,6 +18,8 @@ public class JoinCA {
     private Integer isLeader;
     private String payMethod; // 缴费方式
     private String jnote; // 活动备注
+    private String busSeat;
+    private String tableSeat;
 
     @ManyToOne
     @JoinColumn(name = "aid", referencedColumnName = "aid")
@@ -37,6 +39,28 @@ public class JoinCA {
         } catch (Exception e) {
             return activity.getActivityPrice();
         }
+    }
+
+    public String getBusSeat() {
+        if (this.busSeat != null) {
+            return busSeat;
+        }
+        return "999";
+    }
+
+    public void setBusSeat(String busSeat) {
+        this.busSeat = busSeat;
+    }
+
+    public String getTableSeat() {
+        if (this.tableSeat != null) {
+            return tableSeat;
+        }
+        return "999";
+    }
+
+    public void setTableSeat(String tableSeat) {
+        this.tableSeat = tableSeat;
     }
 
     public String getCustomerAge() {

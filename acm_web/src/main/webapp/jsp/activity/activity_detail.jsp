@@ -43,6 +43,8 @@
             <td>
                 <a href="${pageContext.request.contextPath}/activityAction_associate.action?aid=<s:property value="activity.aid"/>"
                    class="layui-btn layui-btn-small"><i class="layui-icon">&#xe608;</i>为活动添加人员</a>
+                <a href="${pageContext.request.contextPath}/activityAction_seats.action?aid=<s:property value="activity.aid"/>"
+                   class="layui-btn layui-btn-small"><i class="layui-icon">&#xe608;</i>分配汽车座位</a>
             </td>
         </tr>
         </tbody>
@@ -64,7 +66,7 @@
         table.render({
             elem: '#dataTable'
             ,
-            height: 420
+            height: 620
             ,
             cols: [[
                 {field: 'jid', title: 'ID', width: 40, sort: true, fixed: true, align: 'center'}
