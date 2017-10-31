@@ -19,9 +19,9 @@
     <!-- 连接池 -->
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
         <property name="driverClass" value="com.mysql.jdbc.Driver"/>
-        <property name="jdbcUrl" value="jdbc:mysql://47.94.205.163:3306/finalacm"/>
-        <property name="user" value="o28d96ba"/>
-        <property name="password" value="C0OL./2017#04%02qcloud++$"/>
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/finalacm"/>
+        <property name="user" value="root"/>
+        <property name="password" value="C0OL./2017#04%02qcloud--$"/>
         <property name="automaticTestTable" value="systemrecord"/>
         <property name="idleConnectionTestPeriod" value="7200"/>
         <property name="testConnectionOnCheckin" value="false"/>

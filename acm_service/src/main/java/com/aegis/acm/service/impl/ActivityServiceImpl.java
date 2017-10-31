@@ -105,7 +105,7 @@ public class ActivityServiceImpl implements ActivityService {
             for (JoinCA joinCA : caList) {
                 Customer customer = joinCA.getCustomer();
                 row = sheet.createRow(rowIndex);
-                row.createCell(0).setCellValue(rowIndex);
+                row.createCell(0).setCellValue(Long.parseLong(joinCA.getBusSeat()));
                 row.createCell(1).setCellValue(customer.getName());
                 row.createCell(2).setCellValue(customer.getMobile());
                 row.createCell(3).setCellValue(customer.getAge());

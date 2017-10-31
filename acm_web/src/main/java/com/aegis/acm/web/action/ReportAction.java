@@ -2,6 +2,7 @@ package com.aegis.acm.web.action;
 
 import com.aegis.acm.domain.Activity;
 import com.aegis.acm.service.ActivityService;
+import com.aegis.acm.utils.TimeUtil;
 import com.aegis.acm.web.base.BaseAction;
 import com.opensymphony.xwork2.ActionContext;
 import org.apache.struts2.ServletActionContext;
@@ -15,6 +16,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.Time;
 
 @SuppressWarnings("Duplicates")
 public class ReportAction extends BaseAction<Activity> {
@@ -29,7 +31,7 @@ public class ReportAction extends BaseAction<Activity> {
         FileInputStream in = new FileInputStream(filePath);
         HttpServletResponse response = ServletActionContext.getResponse();
         ServletOutputStream outputStream = response.getOutputStream();
-        response.setHeader("content-disposition", "attachment;fileName=baoxian.xls");
+        response.setHeader("content-disposition", "attachment;fileName=baoxian" + TimeUtil.getCurrentTime() + ".xls");
         activityService.reportInsurance(model.getAid(), in, outputStream);
     }
 
@@ -48,7 +50,7 @@ public class ReportAction extends BaseAction<Activity> {
         FileInputStream in = new FileInputStream(filePath);
         HttpServletResponse response = ServletActionContext.getResponse();
         ServletOutputStream outputStream = response.getOutputStream();
-        response.setHeader("content-disposition", "attachment;fileName=mingdan.xls");
+        response.setHeader("content-disposition", "attachment;fileName=mingdan" + TimeUtil.getCurrentTime() + ".xls");
         activityService.reportNormalExcel(model.getAid(), in, outputStream);
     }
 
@@ -59,7 +61,7 @@ public class ReportAction extends BaseAction<Activity> {
         FileInputStream in = new FileInputStream(filePath);
         HttpServletResponse response = ServletActionContext.getResponse();
         ServletOutputStream outputStream = response.getOutputStream();
-        response.setHeader("content-disposition", "attachment;fileName=fukuanxinxi.xls");
+        response.setHeader("content-disposition", "attachment;fileName=fukuanxinxi" + TimeUtil.getCurrentTime() + ".xls");
         activityService.reportPaymentExcel(model.getAid(), in, outputStream);
     }
 }

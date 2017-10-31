@@ -67,4 +67,10 @@ public class JoinCAServiceImpl implements JoinCAService {
     public void joinAction_deleteFromActivity(JoinCA model) {
         joinCADao.delete(model);
     }
+
+    @Override
+    public void addBusSeat(JoinCA model) {
+        JoinCA one = joinCADao.findOne(model.getJid());
+        one.setBusSeat(model.getBusSeat());
+    }
 }

@@ -10,4 +10,6 @@ public interface JoinCAService {
     void doAssociation(JoinCA model);
 
     void joinAction_deleteFromActivity(JoinCA model);
+
+    void addBusSeat(JoinCA model);
 }

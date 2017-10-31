@@ -44,7 +44,7 @@
                 <a href="${pageContext.request.contextPath}/activityAction_associate.action?aid=<s:property value="activity.aid"/>"
                    class="layui-btn layui-btn-small"><i class="layui-icon">&#xe608;</i>为活动添加人员</a>
                 <a href="${pageContext.request.contextPath}/activityAction_seats.action?aid=<s:property value="activity.aid"/>"
-                   class="layui-btn layui-btn-small"><i class="layui-icon">&#xe608;</i>分配汽车座位</a>
+                   class="layui-btn layui-btn-small"><i class="layui-icon">&#xe608;</i>查看汽车座位</a>
             </td>
         </tr>
         </tbody>
@@ -79,6 +79,15 @@
                 , {field: 'prepay', title: '预付', width: 90, align: 'center'}
                 , {field: 'payMethod', title: '方式', sort: true, width: 120, align: 'center', templet: '#methodTpl'}
                 , {field: 'restPay', title: '余款', sort: true, width: 120, align: 'center'}
+                , {
+                    field: 'busSeat',
+                    title: '汽车座位',
+                    sort: true,
+                    width: 100,
+                    align: 'center',
+                    style: 'cursor: pointer;',
+                    event: 'setSeat'
+                }
                 , {field: 'jnote', title: '备注信息', width: 120, align: 'center'}
                 , {fixed: 'right', title: '操作', width: 250, align: 'center', toolbar: '#barDemo'}
             ]]
@@ -90,6 +99,33 @@
             var data = obj.data; //获得当前行数据
             var layEvent = obj.event; //获得 lay-event 对应的值
             var tr = obj.tr; //获得当前行 tr 的DOM对象
+
+
+            if (obj.event === 'setSeat') {
+                layer.prompt({
+                    formType: 0
+                    , title: '设置名字为 [' + data.customerName + '](' + data.customerNickname + ') 的用户的座位号'
+                    , value: ''
+                }, function (value, index) {
+                    $.ajax({
+                        url: '${pageContext.request.contextPath}/joinAction_addBusSeat.action',
+                        type: 'post',
+                        data: {jid: data.jid, busSeat: value},
+                        dataType: 'json',
+                        success: function (data) {
+                            if (data.success) {
+                                layer.close(index);
+                                obj.update({
+                                    busSeat: value
+                                });
+                            } else {
+                                alert(data.message);
+                            }
+                        }
+                    });
+
+                });
+            }
 
             if (layEvent === 'detail') { //查看
                 window.location = "${pageContext.request.contextPath}/joinAction_update.action?jid=" + data.jid;
