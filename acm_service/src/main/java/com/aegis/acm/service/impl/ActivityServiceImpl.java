@@ -97,6 +97,7 @@ public class ActivityServiceImpl implements ActivityService {
         Activity activity = activityDao.findOne(aid);
         List<JoinCA> caList = activity.getCaList();
         try {
+            // apache POI
             HSSFWorkbook book = new HSSFWorkbook(in);
             HSSFSheet sheet = book.getSheetAt(0);
             sheet.setForceFormulaRecalculation(true);
@@ -107,10 +108,16 @@ public class ActivityServiceImpl implements ActivityService {
                 row = sheet.createRow(rowIndex);
                 row.createCell(0).setCellValue(Long.parseLong(joinCA.getBusSeat()));
                 row.createCell(1).setCellValue(customer.getName());
-                row.createCell(2).setCellValue(customer.getMobile());
+                row.createCell(2).setCellValue(customer.getNickname());
                 row.createCell(3).setCellValue(customer.getAge());
                 row.createCell(4).setCellValue(IDNumberUtil.getGender(customer.getIdNumber()));
-                row.createCell(5).setCellValue(customer.getIdNumber());
+                row.createCell(5).setCellValue(activity.getActivityPrice());
+                row.createCell(6).setCellValue(joinCA.getDiscount());
+                row.createCell(7).setCellValue(joinCA.getPrepay());
+                row.createCell(8).setCellValue(joinCA.getRestPay());
+                row.createCell(11).setCellValue(joinCA.getPayMethod());
+                row.createCell(12).setCellValue(customer.getIdNumber());
+                row.createCell(13).setCellValue(customer.getMobile());
                 rowIndex++;
             }
             book.write(outputStream);

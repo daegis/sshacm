@@ -222,6 +222,20 @@
                         <showWarnings>true</showWarnings>
                     </configuration>
                 </plugin>
+
+
+                <plugin>
+                    <groupId>org.apache.tomcat.maven</groupId>
+                    <artifactId>tomcat7-maven-plugin</artifactId>
+                    <version>2.2</version>
+                    <configuration>
+                        <url>http://12.aegisa.cn/manager/text</url>
+                        <username>admin</username>
+                        <password>cool170402</password>
+                        <update>true</update>
+                        <path>/</path>
+                    </configuration>
+                </plugin>
             </plugins>
         </pluginManagement>
     </build>

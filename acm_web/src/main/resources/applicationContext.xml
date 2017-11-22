@@ -21,7 +21,7 @@
         <property name="driverClass" value="com.mysql.jdbc.Driver"/>
         <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/finalacm"/>
         <property name="user" value="root"/>
-        <property name="password" value="C0OL./2017#04%02qcloud--$"/>
+        <property name="password" value="boot"/>
         <property name="automaticTestTable" value="systemrecord"/>
         <property name="idleConnectionTestPeriod" value="7200"/>
         <property name="testConnectionOnCheckin" value="false"/>
@@ -41,7 +41,7 @@
                 <!-- 自动建表 -->
                 <property name="generateDdl" value="true"/>
                 <property name="database" value="MYSQL"/>
-                <property name="databasePlatform" value="org.hibernate.dialect.MySQL57InnoDBDialect"/>
+                <property name="databasePlatform" value="org.hibernate.dialect.MySQLDialect"/>
                 <property name="showSql" value="false"/>
             </bean>
         </property>
